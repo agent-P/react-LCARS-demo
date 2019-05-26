@@ -1,0 +1,27 @@
+.svgText {
+    /* Stops the SVG text from being selectable */
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+
+  font-family: 'LCARS'
+}
+
+.svg {
+  stroke-width: 0;
+  position: relative;
+}
+.static {
+  pointer-events: none;
+}
+.disabled {
+  pointer-events: none;
+  fill-opacity: 0.4;
+  stroke-width: 1;
+}
+
+
