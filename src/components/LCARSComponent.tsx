@@ -41,7 +41,7 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
         x: 0,
         y: 0,
         width: 0,
-        height: 0,
+        height: LCARS.LCARS_BTN_HEIGHT,
         scale: "1.0",
         handleClick: null,
         auxLabel: "",
@@ -109,7 +109,7 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
 
         this.state = {
             color: this.color,
-            visible: this.props.visible
+            visible: this.props.visible,
         };
 
         this.setIconPosition(this.props.iconLocation);
@@ -689,22 +689,8 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
             /* Append the animation element to the shape element. */
             element.appendChild(animateElement);
 
-            this.forceUpdate();
-
-        }        
-        
-        // if(this.animateElementFadeIn != null) {
-        //     this.element.removeChild(this.animateElementFadeIn);
-        // }
-        // this.animateElementFadeOut = document.createElementNS(LCARS.svgNS, "animate");
-        // this.animateElementFadeOut.setAttribute("id", this.element.id + "_fadeOutAnimate");
-        // this.animateElementFadeOut.setAttribute("attributeType", "XML");
-        // this.animateElementFadeOut.setAttribute("attributeName", "opacity");
-        // this.animateElementFadeOut.setAttribute("values", "1;0");
-        // this.animateElementFadeOut.setAttribute("dur", duration + "s");
-        // this.animateElementFadeOut.setAttribute("fill", "freeze");
-        
-        // this.element.appendChild(this.animateElementFadeOut);
+            animateElement.beginElement();
+        }               
     }
     
     fadeIn(event: any) {
@@ -740,20 +726,10 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
 
             /* Append the animation element to the shape element. */
             element.appendChild(animateElement);
+
+            animateElement.beginElement();
         }
-        // if(this.animateElementFadeOut != null) {
-        //     this.element.removeChild(this.animateElementFadeOut);
-        // }
-        // this.animateElementFadeIn = document.createElementNS(LCARS.svgNS, "animate");
-        // this.animateElementFadeIn.setAttribute("id", this.element.id + "_fadeInAnimate");
-        // this.animateElementFadeIn.setAttribute("attributeType", "XML");
-        // this.animateElementFadeIn.setAttribute("attributeName", "opacity");
-        // this.animateElementFadeIn.setAttribute("values", "0;1");
-        // this.animateElementFadeIn.setAttribute("dur", duration + "s");
-        // this.animateElementFadeIn.setAttribute("fill", "freeze");
-        
-        // this.element.appendChild(this.animateElementFadeIn);
-    }
+}
     
     
     setIconPosition(location: number) {

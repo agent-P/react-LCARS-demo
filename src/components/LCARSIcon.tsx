@@ -39,8 +39,6 @@ class LCARSIcon extends LCARSComponent <LCARSIconProps> {
     constructor(props: LCARSIconProps) {
         super(props);
 
-//        this.width = this.props.width;
-//        this.height = LCARS.LCARS_CORNER_HEIGHT + (((this.props.height-1)<0)?0:(this.props.height-1))*LCARS.LCARS_BTN_HEIGHT + (((this.props.height-1)<0)?0:(this.props.height-1))*LCARS.LCARS_BTN_SPACING;
         this.properties = this.props.properties;
         
         if((this.properties & LCARS.ES_FONT) == LCARS.EF_NORMAL) {

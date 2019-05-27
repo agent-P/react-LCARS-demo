@@ -41,7 +41,7 @@ class App extends Component {
   }
 
   private handleFadeIn(e: any) {
-    var testEvent = new CustomEvent('fadeIn', {detail: '{"duration": "' + 10 + '"}'});
+    var testEvent = new CustomEvent('fadeIn', {detail: '{"duration": "' + 3 + '"}'});
     
     var element = document.getElementById("testButton");
     if(element) {
@@ -50,7 +50,7 @@ class App extends Component {
   }
 
   private handleFadeOut(e: any) {
-    var testEvent = new CustomEvent('fadeOut', {detail: '{"duration": "' + 9 + '"}'});
+    var testEvent = new CustomEvent('fadeOut', {detail: '{"duration": "' + 3 + '"}'});
     
     var element = document.getElementById("testButton");
     if(element) {
@@ -126,7 +126,6 @@ class App extends Component {
           label={this.state.label}
           x={175}
           y={150}
-          height={1}
           properties={ LCARS.ES_RECT_RND | LCARS.ES_LABEL_NE }
           auxLabel={"AUX"}
           auxLabelProperties={LCARS.EC_BLUE | LCARS.EF_BODY}
@@ -157,33 +156,74 @@ class App extends Component {
           x={330} y={150}
         />
 
+        <LCARSRectangle 
+          id="testCustomRectangle"
+          label="Custom Rect"
+          height={30}
+          width={300}
+          x={530} y={150}
+        />
+
         <LCARSIcon
           id="testIcon"
           icon={ICONS.NETWORK_CONNECTION}
           x={30} y={50}
         />
 
-      <a href="#" onClick={this.handleBlinkingOn}>
-          Blinking On
-        </a><br/>
-        <a href="#" onClick={this.handleBlinkingOff}>
-          Blinking Off
-        </a><br/>
-        <a href="#" onClick={this.handleOnBlink}>
-          On Blink
-        </a><br/>
-        <a href="#" onClick={this.handleOffBlink}>
-          Off Blink
-        </a><br/>
-        <a href="#" onClick={this.handleFadeOut}>
-          Fade Out
-        </a><br/>
-        <a href="#" onClick={this.handleFadeIn}>
-          Fade In
-        </a><br/>
+        <LCARSButton 
+          id="blinkingOnButton"
+          label="Blinking On"
+          x={10}
+          y={210}
+          handleClick={this.handleBlinkingOn}
+          visible={this.state.visible}
+        />
 
+        <LCARSButton 
+          id="blinkingOffButton"
+          label="Blinking Off"
+          x={10}
+          y={274}
+          handleClick={this.handleBlinkingOff}
+          visible={this.state.visible}
+        />
 
-     
+        <LCARSButton 
+          id="onBlinkButton"
+          label="On Blink"
+          x={10}
+          y={338}
+          handleClick={this.handleOnBlink}
+          visible={this.state.visible}
+        />
+
+        <LCARSButton 
+          id="offBlinkButton"
+          label="Off Blink"
+          x={10}
+          y={402}
+          handleClick={this.handleOffBlink}
+          visible={this.state.visible}
+        />
+
+        <LCARSButton 
+          id="fadeOutButton"
+          label="Fade Out"
+          x={10}
+          y={466}
+          handleClick={this.handleFadeOut}
+          visible={this.state.visible}
+        />
+
+        <LCARSButton 
+          id="fadeInButton"
+          label="Fade In"
+          x={10}
+          y={530}
+          handleClick={this.handleFadeIn}
+          visible={this.state.visible}
+        />
+
        
       </LCARSScreen>
     );

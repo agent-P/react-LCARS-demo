@@ -21,7 +21,7 @@ class LCARSRectangle extends LCARSComponent <LCARSRectangleProps> {
         y: 0,
         color: LCARS.EC_ORANGE,
         properties: LCARS.ES_LABEL_C,
-        height: 1,
+        height: LCARS.LCARS_BTN_HEIGHT,
         width: LCARS.LCARS_BTN_WIDTH,
         scale: "1.0",
         auxLabel: "",
@@ -44,8 +44,7 @@ class LCARSRectangle extends LCARSComponent <LCARSRectangleProps> {
             this.fontSize = LCARS.FONT_BUTTON_SIZE; // the default font for button components
         }
 
-        this.height = LCARS.LCARS_BTN_HEIGHT;
-
+        this.height = this.props.height;
     }
 
     render() {
