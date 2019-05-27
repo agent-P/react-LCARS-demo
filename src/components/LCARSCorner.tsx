@@ -23,6 +23,7 @@ class LCARSCorner extends LCARSComponent <LCARSCornerProps> {
         properties: LCARS.EC_ORANGE,
         height: 1,
         width: LCARS.LCARS_BTN_WIDTH,
+        scale: "1.0",
         auxLabel: "",
         auxLabelProperties: 0,
         handleClick: null,

@@ -23,6 +23,7 @@ class LCARSButton extends LCARSComponent <LCARSButtonProps> {
         properties: LCARS.EC_ORANGE | LCARS.ES_RECT_RND | LCARS.ES_LABEL_C,
         height: 1,
         width: LCARS.LCARS_BTN_WIDTH,
+        scale: "1.0",
         auxLabel: "",
         auxLabelProperties: 0,
         handleClick: null,

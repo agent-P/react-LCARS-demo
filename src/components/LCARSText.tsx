@@ -23,6 +23,7 @@ class LCARSText extends LCARSComponent <LCARSTextProps> {
         properties: LCARS.ES_LABEL_C,
         height: 0,
         width: LCARS.LCARS_BTN_WIDTH,
+        scale: "1.0",
         auxLabel: "",
         auxLabelProperties: 0,
         handleClick: null,

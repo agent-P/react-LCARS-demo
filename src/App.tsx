@@ -8,6 +8,7 @@ import ICONS from './resources/ICONS';
 import LCARSText from './components/LCARSText';
 import LCARSRectangle from './components/LCARSRectangle';
 import LCARSScreen from './components/LCARSScreen';
+import LCARSIcon from './components/LCARSIcon';
 
 interface IState {
   label: string;
@@ -128,7 +129,7 @@ class App extends Component {
           height={1}
           properties={ LCARS.ES_RECT_RND | LCARS.ES_LABEL_NE }
           auxLabel={"AUX"}
-          auxLabelProperties={LCARS.EC_BLUE}
+          auxLabelProperties={LCARS.EC_BLUE | LCARS.EF_BODY}
           handleClick={this.handleClick}
           icon={ICONS.POWER_BUTTON_SVG}
           iconLocation={LCARS.ES_LABEL_W}
@@ -151,12 +152,16 @@ class App extends Component {
         />
 
         <LCARSRectangle 
-          id="testRextangle"
+          id="testRectangle"
           label="Rect"
           x={330} y={150}
         />
 
-    
+        <LCARSIcon
+          id="testIcon"
+          icon={ICONS.NETWORK_CONNECTION}
+          x={30} y={50}
+        />
 
       <a href="#" onClick={this.handleBlinkingOn}>
           Blinking On

@@ -12,6 +12,7 @@ export interface LCARSComponentProps {
     y: number;
     width: number;
     height: number;
+    scale: string;
     color: number;
     properties: number;
     handleClick: any;
@@ -41,6 +42,7 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
         y: 0,
         width: 0,
         height: 0,
+        scale: "1.0",
         handleClick: null,
         auxLabel: "",
         auxLabelProperties: 0,
@@ -55,6 +57,7 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
 
     protected height: number;
     protected width: number;
+    protected scale: string;
     protected properties: number;
     protected color: any;
     protected overColor: string;
@@ -86,6 +89,7 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
     
         this.height = this.props.height;
         this.width = this.props.width;
+        this.scale = this.props.scale;
         this.properties = props.properties;
         this.color = this.getColor();
         this.overColor = this.getOverColor(null);
@@ -96,7 +100,7 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
         this.animateElementFadeIn = null;
         this.animateElementFadeOut = null;
         this.duration = "";
-        this.iconScale = "";
+        this.iconScale = this.props.iconScale;
         this.iconTranslate = "";
         this.iconTransform = "";
         this.blikDuration = 100;
@@ -163,7 +167,6 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
                height={this.height} 
                width={this.width} 
                fill={this.state.color}
-               //transform={this.getPosition(this.props.x, this.props.y)}                
                onMouseOver={this.handleMouseOver}
                onMouseOut={this.handleMouseOut}
                onMouseDown={this.handleMouseDown}
@@ -179,6 +182,7 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
                     id={this.props.id + LCARS.SHAPE_SUFFIX} 
                     d={this.getShape()} 
                     stroke={this.state.color}
+                    transform={" scale(" + this.scale + ") "}
                     />
                 <text
                     id={this.props.id + LCARS.TEXT_SUFFIX}
@@ -198,12 +202,13 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
                     y={this.getAuxTextY()}
                     fill={LCARS.getColor(this.props.auxLabelProperties & LCARS.ES_COLOR)}
                     textAnchor={this.getAuxTextAnchor()}
+                    fontSize={this.getAuxLabelFontSize()}
                 >
                    {this.props.auxLabel}
                 </text>
                 <path
                     id={this.props.id + LCARS.ICON_SUFFIX}
-                    d={this.props.icon}
+                    d={this.getIconShape()}
                     x={20}
                     y={20}
                     fill={this.textColor}
@@ -630,50 +635,7 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
     
     
 
-    /**
-     * Method to set the text attributes of the LCARS component. The text element is created
-     * in the constructor. This method simply sets the text attributes that are specified
-     * in the constructor. The attributes being set are:
-     * <ul>
-     * <li> component id</li>
-     * <li> x coordinate</li>
-     * <li> x coordinate</li>
-     * <li> text anchor location</li>
-     * <li> fill color dependent on enable/disable status of the component</li>
-     * <li> font family</li>
-     * <li> font size</li>
-     * <li> pointer events, text elements do not respond to pointer events</li>
-     * </ul>
-     */
-    setTextAttributes() {
-        //this.textElement.setAttribute("id", this.id + LCARS.TEXT_SUFFIX);
-        this.textElement.setAttribute("x", this.getTextX());
-        this.textElement.setAttribute("y", this.getTextY());
-        this.textElement.setAttribute("text-anchor", this.textAnchor);
-        if(this.props.enabled == true) {
-            this.textElement.setAttribute("fill", '#585858');
-        }
-        else {
-            this.textElement.setAttribute("fill", this.textColor);
-        }
-        this.textElement.setAttribute("font-family", LCARS.getFont());
-        this.textElement.setAttribute("font-size", this.fontSize);
-        this.textElement.setAttribute("pointer-events", "none");
-    }
-    
-        
-    /**
-     * Method to set the LCARS component's text element's font size to the size specified by the argument.
-     * It also sets the object's <code>fontSize</code> attribute.
-     *
-     * @param textFontSize the font size to set for the component's text element
-     */
-    setTextFontSize(textFontSize: number) {
-        this.fontSize = textFontSize;
-        this.textElement.setAttribute("font-size", this.fontSize);
-    }
-    
-    
+
     /**
      * Method to control the visibility of the LCARS component. If the argument is set to
      * <code>false</code>, the component will be invisible. If <code>true</code>, the
@@ -795,10 +757,14 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
     
     
     setIconPosition(location: number) {
-        var iconScale = " scale(" + this.props.iconScale + ") ";
+        var iconScale = " scale(" + this.iconScale + ") ";
         var iconTranslate = " translate(" + this.getIconX(location) + "," + this.getIconY(location) + ") "
 
         this.iconTransform = iconTranslate + iconScale;
+    }
+
+    getIconShape() {
+        return this.props.icon;
     }
     
     getIconPosition() {
@@ -937,13 +903,13 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
                 return LCARS.FONT_TITLE_SIZE;
             case LCARS.EF_SUBTITLE:
                 return LCARS.FONT_SUBTITLE_SIZE;
-            case LCARS.EF_BUTTON:
-                return LCARS.FONT_BUTTON_SIZE;
             case LCARS.EF_TINY:
                 return LCARS.FONT_TINY_SIZE
             case LCARS.EF_BODY:
-            default:
                 return LCARS.FONT_BODY_SIZE;
+            case LCARS.EF_BUTTON:    
+            default:
+                return LCARS.FONT_BUTTON_SIZE;
         }
     }
     
