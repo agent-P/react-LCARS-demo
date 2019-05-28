@@ -44,8 +44,6 @@ class LCARSScreen<P extends LCARSScreenProps> extends Component<P> {
         this.width = this.props.width;
         this.color = LCARS.getColor(this.props.color);
 
-        //this.visible = this.props.visible;
-
         this.state = {
             color: this.color,
             visible: this.props.visible

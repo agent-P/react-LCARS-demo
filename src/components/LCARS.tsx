@@ -206,7 +206,7 @@ class LCARS {
      */
     static getColor(properties: number) {
         var color = "";
-        
+
         switch(properties & ES_COLOR) {
             case EC_WHITE:
                 return "#CCDDFF";
