@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import LCARS from './LCARS'
 import './LCARSComponent.css'
-import ICONS from "./Icons";
 
 export interface LCARSComponentProps {
     id: string;
@@ -160,7 +159,7 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
     render() {
         //console.log("rendering: " + this.props.id);
         //console.log("visibility: " + this.state.visible);
-        console.log(this.getPosition(this.props.x, this.props.y));
+        //console.log(this.getPosition(this.props.x, this.props.y));
         return(
            <svg className={this.getClassName(this.props.static, this.props.enabled)}
                id={this.props.id}
@@ -497,9 +496,9 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
     }
 
     
-    protected getPosition(x: number, y: number) {
-        return 'translate(' + x + ',' +  y +')';
-    }
+    // protected getPosition(x: number, y: number) {
+    //     return 'translate(' + x + ',' +  y +')';
+    // }
     
 
     /**

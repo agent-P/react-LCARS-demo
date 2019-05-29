@@ -2,24 +2,26 @@ import React, { Component } from "react";
 import LCARS from './LCARS'
 import LCARSText from './LCARSText';
 import LCARSRectangle from './LCARSRectangle';
+import LCARSCorner from './LCARSCorner';
+import LCARSButton from './LCARSButton';
 
-export interface LCARSBasicScreenProps {
+export interface LCARSMenuScreenProps {
     id: string;
     title: string;
     subTitle: string;
     width: number;
     height: number;
     color: number;
-    fontSize: number;
+    //fontSize: number;
     visible: boolean;
 }
 
-export interface LCARSBasicScreenState {
+export interface LCARSMenuScreenState {
     color: any;
     visible: boolean;
 }
 
-class LCARSBasicScreen<P extends LCARSBasicScreenProps> extends Component<P> {
+class LCARSMenuScreen<P extends LCARSMenuScreenProps> extends Component<P> {
 
     public static defaultProps = {
         title: "",
@@ -27,7 +29,7 @@ class LCARSBasicScreen<P extends LCARSBasicScreenProps> extends Component<P> {
         width: 0,
         height: 0,
         color: LCARS.EC_ORANGE,
-        fontSize: LCARS.EF_TITLE,
+        //fontSize: LCARS.EF_TITLE,
         visible: true
     };
 
@@ -46,7 +48,7 @@ class LCARSBasicScreen<P extends LCARSBasicScreenProps> extends Component<P> {
     protected titleWidth: number;
     protected titleGap: number;
 
-    state: LCARSBasicScreenState;
+    state: LCARSMenuScreenState;
 
     constructor(props: P) {
         super(props);
@@ -56,10 +58,10 @@ class LCARSBasicScreen<P extends LCARSBasicScreenProps> extends Component<P> {
         this.height = this.props.height;
         this.width = this.props.width;
         this.color = LCARS.getColor(this.props.color);
-        this.fontSize = LCARS.getLCARSFontSize(this.props.fontSize);
+        this.fontSize = LCARS.getLCARSFontSize(LCARS.EF_SUBTITLE);
 
         this.CAP_WIDTH = this.fontSize * 0.6;
-        this.headerThickness = this.fontSize*0.9;
+        this.headerThickness = LCARS.LCARS_CORNER_END_HEIGHT;
 
         this.LEFT = 10;
         this.TOP = 5;
@@ -68,10 +70,10 @@ class LCARSBasicScreen<P extends LCARSBasicScreenProps> extends Component<P> {
 
         this.titleWidth = LCARS.getTextWidth3(this.title, this.fontSize);
         if(this.titleWidth == 0) {
-            this.titleGap = 2 * LCARS.LCARS_SPACE;
+            this.titleGap = LCARS.LCARS_SPACE;
         }
         else {
-            this.titleGap = 3 * LCARS.LCARS_SPACE;
+            this.titleGap = 2 * LCARS.LCARS_SPACE;
         }
 
         this.state = {
@@ -87,25 +89,16 @@ class LCARSBasicScreen<P extends LCARSBasicScreenProps> extends Component<P> {
                     id={this.props.id + "_screen_title"}
                     label={this.title}
                     color={this.props.color}
-                    properties={ this.props.fontSize }
+                    properties={ LCARS.EF_SUBTITLE }
                     x={this.width - (this.CAP_WIDTH + this.RIGHT + LCARS.LCARS_SPACE + this.titleWidth)} 
-                    y={this.TOP-4}
+                    y={this.TOP-1}
                 />
 
-                <LCARSRectangle 
-                    id={this.props.id + "_hb_end_cap_w"}
-                    height={this.headerThickness}
-                    width={this.CAP_WIDTH}
-                    x={this.LEFT} y={this.TOP}
-                    color={this.props.color}
-                    properties={LCARS.ES_RECT_RND_W }
-                />
-
-                <LCARSRectangle 
+                <LCARSCorner
                     id={this.props.id + "_rect_title_bar"}
-                    height={this.headerThickness}
-                    width={this.width - this.titleGap - (2 * this.CAP_WIDTH) - this.LEFT - this.RIGHT - this.titleWidth}
-                    x={this.LEFT + this.CAP_WIDTH + LCARS.LCARS_SPACE} y={this.TOP}
+                    height={1}
+                    width={this.width - this.titleGap - this.CAP_WIDTH - this.LEFT - this.RIGHT - this.titleWidth}
+                    x={this.LEFT} y={this.TOP}
                     color={this.props.color}
                 />
 
@@ -118,21 +111,13 @@ class LCARSBasicScreen<P extends LCARSBasicScreenProps> extends Component<P> {
                     properties={LCARS.ES_RECT_RND_E }
                 />
 
-                <LCARSRectangle 
-                    id={this.props.id + "_fb_end_cap_w"}
-                    height={this.headerThickness}
-                    width={this.CAP_WIDTH}
-                    x={this.LEFT} y={this.height - this.headerThickness - this.BOTTOM}
-                    color={this.props.color}
-                    properties={LCARS.ES_RECT_RND_W }
-                />
-
-                <LCARSRectangle 
+                <LCARSCorner
                     id={this.props.id + "_rect_footer_bar"}
-                    height={this.headerThickness}
-                    width={this.width - (2 * LCARS.LCARS_SPACE) - (2 * this.CAP_WIDTH) - this.LEFT - this.RIGHT}
-                    x={this.LEFT + this.CAP_WIDTH + LCARS.LCARS_SPACE} y={this.height - this.headerThickness - this.BOTTOM}
+                    height={1}
+                    width={this.width - (1 * LCARS.LCARS_SPACE) - this.CAP_WIDTH - this.LEFT - this.RIGHT}
+                    x={this.LEFT} y={this.height - this.BOTTOM - LCARS.LCARS_CORNER_HEIGHT}
                     color={this.props.color}
+                    properties={LCARS.ES_SHAPE_SW}
                 />
 
                 <LCARSRectangle 
@@ -150,4 +135,4 @@ class LCARSBasicScreen<P extends LCARSBasicScreenProps> extends Component<P> {
     }
 }
 
-export default LCARSBasicScreen;
+export default LCARSMenuScreen;

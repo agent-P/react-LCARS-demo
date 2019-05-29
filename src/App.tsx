@@ -7,7 +7,7 @@ import LCARS from './components/LCARS';
 import ICONS from './resources/ICONS';
 import LCARSText from './components/LCARSText';
 import LCARSRectangle from './components/LCARSRectangle';
-import LCARSBasicScreen from './components/LCARSBasicScreen';
+import LCARSMenuScreen from './components/LCARSMenuScreen';
 import LCARSIcon from './components/LCARSIcon';
 
 interface IState {
@@ -17,35 +17,25 @@ interface IState {
 }
 
 class App extends Component {
-  state: IState
-
-  testEvent: any;
 
   constructor(props: any) {
     super(props);
 
-    this.state = {
-      label: "TEST",
-      blinking: false,
-      visible: "visible",
-    };
-
-
   }
-
  
   render() {
     
     return (
-      <LCARSBasicScreen 
-        id="homeScreen"
-        width={1920} height={1080}
+      <LCARSMenuScreen 
+        id="menuScreen"
+        width={1920} height={1200}
         title="Home Screen Test"
         //color={LCARS.EC_L_BLUE}
+        //fontSize={LCARS.EF_SUBTITLE}
         >
 
 
-      </LCARSBasicScreen>
+      </LCARSMenuScreen>
     );
   }
 }

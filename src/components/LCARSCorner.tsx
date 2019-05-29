@@ -16,7 +16,7 @@ class LCARSCorner extends LCARSComponent <LCARSCornerProps> {
     public static defaultProps = {
         static: true,
         enabled: true,
-        label: "Corner",
+        label: "",
         x: 0,
         y: 0,
         color: LCARS.EC_ORANGE,
