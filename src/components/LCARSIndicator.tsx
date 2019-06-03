@@ -4,18 +4,18 @@ import LCARSComponent, { LCARSComponentState } from './LCARSComponent';
 import { LCARSComponentProps } from './LCARSComponent'
 import './LCARSComponent.css'
 
-interface LCARSRectangleProps extends LCARSComponentProps {
+interface LCARSIndicatorProps extends LCARSComponentProps {
 }
 
 
 /**
- * LCARS Rectangle component
+ * LCARS Indicator component
  */
-class LCARSRectangle extends LCARSComponent <LCARSRectangleProps> {
+class LCARSIndicator extends LCARSComponent <LCARSIndicatorProps> {
 
     public static defaultProps = {
         static: true,
-        enabled: true,
+        enabled: false,
         label: "",
         x: 0,
         y: 0,
@@ -37,7 +37,7 @@ class LCARSRectangle extends LCARSComponent <LCARSRectangleProps> {
     };
 
 
-    constructor(props: LCARSRectangleProps) {
+    constructor(props: LCARSIndicatorProps) {
         super(props);
         
         if((this.properties & LCARS.ES_FONT) == LCARS.EF_NORMAL) {
@@ -63,4 +63,4 @@ class LCARSRectangle extends LCARSComponent <LCARSRectangleProps> {
     
 }
 
-export default LCARSRectangle;
+export default LCARSIndicator;

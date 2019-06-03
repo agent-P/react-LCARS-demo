@@ -7,12 +7,12 @@ import LCARS from './components/LCARS';
 import ICONS from './resources/ICONS';
 import LCARSText from './components/LCARSText';
 import LCARSRectangle from './components/LCARSRectangle';
-import LCARSMenuScreen from './components/LCARSMenuScreen';
+import LCARSBasicScreen from './components/LCARSBasicScreen';
 import LCARSIcon from './components/LCARSIcon';
 import { Redirect } from 'react-router'
 
 
-class App extends Component {
+class IconTestPage extends Component {
 
   state = {
     navigate: false,
@@ -24,13 +24,19 @@ class App extends Component {
   protected RIGHT: number;
   protected BOTTOM: number;
 
+  protected width: number;
+  protected height: number;
+
   constructor(props: any) {
     super(props);
 
-    this.LEFT = 10;
+    this.LEFT = 50;
     this.TOP = 5;
-    this.RIGHT  = 10;
+    this.RIGHT  = 50;
     this.BOTTOM = 20;
+
+    this.width = 1920;
+    this.height = 1200;
 
     this.handleMenuItemOne = this.handleMenuItemOne.bind(this);
     this.handleMenuItemTwo = this.handleMenuItemTwo.bind(this);
@@ -46,10 +52,10 @@ class App extends Component {
     }
 
     return (
-      <LCARSMenuScreen 
+      <LCARSBasicScreen 
         id="menuScreen"
-        width={1920} height={1200}
-        title="LCARS Component Testing"
+        width={this.width} height={this.height}
+        title="LCARS Icon Testing"
         //vbWidth={2*1920} vbHeight={2*1200}
         //color={LCARS.EC_L_BLUE}
         //fontSize={LCARS.EF_SUBTITLE}
@@ -65,14 +71,16 @@ class App extends Component {
 
         <LCARSButton 
           id="menuItemTwoButton"
-          label="Icon Test"
-          x={this.LEFT}
-          y={this.TOP + LCARS.LCARS_CORNER_HEIGHT + LCARS.LCARS_BTN_HEIGHT + 2*LCARS.LCARS_SPACE}
+          label="Back"
+          properties={ LCARS.ES_RECT_RND | LCARS.ES_LABEL_E }
+          x={this.width - this.RIGHT - LCARS.LCARS_BTN_WIDTH}
+          y={this.height - this.BOTTOM - LCARS.FONT_TITLE_SIZE - LCARS.LCARS_SPACE - LCARS.LCARS_BTN_HEIGHT}
           handleClick={this.handleMenuItemTwo}
+          icon={ICONS.LEFT_ARROW_IN_CIRCLE}
+          iconLocation={LCARS.ES_LABEL_W}
         />
 
-
-      </LCARSMenuScreen>
+      </LCARSBasicScreen>
     );
   }
 
@@ -80,13 +88,14 @@ class App extends Component {
   private handleMenuItemOne(e: any) {
     e.preventDefault();
     this.setState({ navigate: true, path: "/componenttestpage" });
+    
   }
 
   private handleMenuItemTwo(e: any) {
     e.preventDefault();
-    this.setState({ navigate: true, path: "/icontestpage" });
+    history.back();
   }
 
 }
 
-export default App;
+export default IconTestPage;

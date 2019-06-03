@@ -12,7 +12,7 @@
 }
 
 .svg {
-  stroke-width: 0;
+  stroke-width: 2;
   position: relative;
 }
 .static {
@@ -20,8 +20,20 @@
 }
 .disabled {
   pointer-events: none;
-  fill-opacity: 0.4;
-  stroke-width: 1;
+  fill-opacity: 0.5;
+  stroke-width: 2;
 }
+
+.svgIcon {
+  position: relative;
+  stroke-width: 0;
+}
+
+.svgDisabled {
+  pointer-events: none;
+  fill-opacity: 0.5;
+  stroke-width: 0;
+}
+
 
 

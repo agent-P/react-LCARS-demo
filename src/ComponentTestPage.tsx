@@ -8,6 +8,7 @@ import LCARSText from './components/LCARSText';
 import LCARSRectangle from './components/LCARSRectangle';
 import LCARSScreen from './components/LCARSScreen';
 import LCARSIcon from './components/LCARSIcon';
+import LCARSIndicator from './components/LCARSIndicator';
 
 interface IState {
   label: string;
@@ -142,6 +143,13 @@ class ComponentTestPage extends Component {
         />
 
         <LCARSText 
+          id="testLowerCaseText"
+          label="Lower case characters: abcdefghijklmnopqrstuvwxyz"
+          properties={ LCARS.EF_TITLE }
+          x={780} y={20}
+        />
+
+        <LCARSText 
           id="testNormalText"
           label="NORMAL text"
           //width={300}
@@ -155,9 +163,16 @@ class ComponentTestPage extends Component {
           x={330} y={150}
         />
 
+        <LCARSIndicator 
+          id="testIndicatorOff"
+          label="indicator off"
+          x={330} y={250}
+          properties={ LCARS.ES_RECT_RND | LCARS.ES_LABEL_C }
+        />
+
         <LCARSRectangle 
           id="testCustomRectangle"
-          label="Custom Rect"
+          label="Custom Rectangle"
           height={30}
           width={300}
           x={530} y={150}
@@ -165,8 +180,9 @@ class ComponentTestPage extends Component {
 
         <LCARSIcon
           id="testIcon"
-          icon={ICONS.NETWORK_CONNECTION}
+          icon={ICONS.RIGHT_ARROW_IN_CIRCLE}
           x={30} y={50}
+          enabled={false}
         />
 
         <LCARSButton 

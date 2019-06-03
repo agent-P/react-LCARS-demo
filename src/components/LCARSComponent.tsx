@@ -163,8 +163,8 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
         return(
            <svg className={this.getClassName(this.props.static, this.props.enabled)}
                id={this.props.id}
-               height={this.height} 
-               width={this.width} 
+               height={this.height+3} 
+               width={this.width+3} 
                fill={this.state.color}
                onMouseOver={this.handleMouseOver}
                onMouseOut={this.handleMouseOut}
@@ -217,7 +217,7 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
         );
     }
 
-    private getClassName(_static: any, enabled: any) {
+    protected getClassName(_static: any, enabled: any) {
        var className = "svg ";
        if(_static) {
             className += "static ";
@@ -396,7 +396,7 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
             case LCARS.ES_LABEL_NW:
             case LCARS.ES_LABEL_N:
             case LCARS.ES_LABEL_NE:
-                y = this.fontSize;
+                y = this.fontSize*1.1;
                 break;
             case LCARS.ES_LABEL_S:
             case LCARS.ES_LABEL_SW:
@@ -452,7 +452,7 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
         switch(rectType) {
             case LCARS.ES_RECT_RND:
             case LCARS.ES_RECT_RND_W:
-                westEndString = " m" + (this.height/2) + "," + this.height +
+                westEndString = " m" + (this.height/2) + "," + (this.height+1) +
                 " c-" + (this.height*.65) + ",0 -" + (this.height*.65) + ",-" + this.height + " 0,-" + this.height;
                 break;
             case LCARS.ES_RECT_RND_E:

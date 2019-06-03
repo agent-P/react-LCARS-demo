@@ -89,7 +89,7 @@ class LCARSBasicScreen<P extends LCARSBasicScreenProps> extends Component<P> {
                     color={this.props.color}
                     properties={ this.props.fontSize }
                     x={this.width - (this.CAP_WIDTH + this.RIGHT + LCARS.LCARS_SPACE + this.titleWidth)} 
-                    y={this.TOP-4}
+                    y={this.TOP}
                 />
 
                 <LCARSRectangle 

@@ -84,9 +84,10 @@ class LCARSText extends LCARSComponent <LCARSTextProps> {
 
     getTextY() {
         /**
-         * Center the text within the component.
+         * Center the text within the component, and make sure that characters that
+         * extend below the line are not clipped.
          */
-        return this.fontSize * 0.95;
+        return this.fontSize * 0.88;
     }
        
  

@@ -10,7 +10,9 @@ export interface LCARSMenuScreenProps {
     title: string;
     subTitle: string;
     width: number;
+    vbWidth: number;
     height: number;
+    vbHeight: number;
     color: number;
     //fontSize: number;
     visible: boolean;
@@ -27,7 +29,9 @@ class LCARSMenuScreen<P extends LCARSMenuScreenProps> extends Component<P> {
         title: "",
         subTitle: "",
         width: 0,
+        vbWidth: 0,
         height: 0,
+        vbHeight: 0,
         color: LCARS.EC_ORANGE,
         //fontSize: LCARS.EF_TITLE,
         visible: true
@@ -37,6 +41,8 @@ class LCARSMenuScreen<P extends LCARSMenuScreenProps> extends Component<P> {
     protected subTitle: string;
     protected height: number;
     protected width: number;
+    protected vbHeight: number;
+    protected vbWidth: number;
     protected color: any;
     protected fontSize: number;
     protected CAP_WIDTH: number;
@@ -57,6 +63,8 @@ class LCARSMenuScreen<P extends LCARSMenuScreenProps> extends Component<P> {
         this.subTitle = this.props.subTitle;
         this.height = this.props.height;
         this.width = this.props.width;
+        this.vbHeight = this.props.vbHeight;
+        this.vbWidth = this.props.vbWidth;
         this.color = LCARS.getColor(this.props.color);
         this.fontSize = LCARS.getLCARSFontSize(LCARS.EF_SUBTITLE);
 
@@ -76,6 +84,14 @@ class LCARSMenuScreen<P extends LCARSMenuScreenProps> extends Component<P> {
             this.titleGap = 2 * LCARS.LCARS_SPACE;
         }
 
+        if(this.props.vbWidth == 0) {
+            this.vbWidth = this.props.width;
+        }
+
+        if(this.props.vbHeight == 0) {
+            this.vbHeight = this.props.height;
+        }
+
         this.state = {
             color: this.color,
             visible: this.props.visible
@@ -84,14 +100,14 @@ class LCARSMenuScreen<P extends LCARSMenuScreenProps> extends Component<P> {
 
     render() {
         return(
-            <svg viewBox={"0 0 " + this.width + " " + this.height}>
+            <svg viewBox={"0 0 " + this.vbWidth + " " + this.vbHeight}>
                 <LCARSText 
                     id={this.props.id + "_screen_title"}
                     label={this.title}
                     color={this.props.color}
                     properties={ LCARS.EF_SUBTITLE }
                     x={this.width - (this.CAP_WIDTH + this.RIGHT + LCARS.LCARS_SPACE + this.titleWidth)} 
-                    y={this.TOP-1}
+                    y={this.TOP}
                 />
 
                 <LCARSCorner
@@ -133,6 +149,7 @@ class LCARSMenuScreen<P extends LCARSMenuScreenProps> extends Component<P> {
             </svg>
         );
     }
+    
 }
 
 export default LCARSMenuScreen;

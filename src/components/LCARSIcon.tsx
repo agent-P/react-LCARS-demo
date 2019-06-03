@@ -57,6 +57,20 @@ class LCARSIcon extends LCARSComponent <LCARSIconProps> {
     getIconShape() {
         return "";
     }
+
+
+    protected getClassName(_static: any, enabled: any) {
+        var className = "svgIcon ";
+        if(_static) {
+             className += "static ";
+        }
+        if(!enabled) {
+            className += "svgDisabled ";
+        }
+
+        return className;
+    }
+ 
 }
 
 export default LCARSIcon;
