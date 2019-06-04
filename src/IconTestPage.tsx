@@ -38,8 +38,7 @@ class IconTestPage extends Component {
     this.width = 1920;
     this.height = 1200;
 
-    this.handleMenuItemOne = this.handleMenuItemOne.bind(this);
-    this.handleMenuItemTwo = this.handleMenuItemTwo.bind(this);
+    this.handleMenuBackButtonClick = this.handleMenuBackButtonClick.bind(this);
   }
  
   render() {
@@ -53,7 +52,7 @@ class IconTestPage extends Component {
 
     return (
       <LCARSBasicScreen 
-        id="menuScreen"
+        id="iconTestingScreen"
         width={this.width} height={this.height}
         title="LCARS Icon Testing"
         //vbWidth={2*1920} vbHeight={2*1200}
@@ -62,22 +61,104 @@ class IconTestPage extends Component {
         >
 
         <LCARSButton 
-          id="menuItemOneButton"
-          label="Component Test"
-          x={this.LEFT}
-          y={this.TOP + LCARS.LCARS_CORNER_HEIGHT + LCARS.LCARS_SPACE}
-          handleClick={this.handleMenuItemOne}
-        />
-
-        <LCARSButton 
-          id="menuItemTwoButton"
+          id="iconTestingBackButton"
           label="Back"
           properties={ LCARS.ES_RECT_RND | LCARS.ES_LABEL_E }
-          x={this.width - this.RIGHT - LCARS.LCARS_BTN_WIDTH}
-          y={this.height - this.BOTTOM - LCARS.FONT_TITLE_SIZE - LCARS.LCARS_SPACE - LCARS.LCARS_BTN_HEIGHT}
-          handleClick={this.handleMenuItemTwo}
+          x={this.LEFT}
+          y={this.TOP + LCARS.FONT_TITLE_SIZE + LCARS.LCARS_SPACE }
+          handleClick={this.handleMenuBackButtonClick}
           icon={ICONS.LEFT_ARROW_IN_CIRCLE}
           iconLocation={LCARS.ES_LABEL_W}
+        />
+
+        <LCARSText
+          id="navIconDescription"
+          label="Navigation"
+          x={280} y={80}
+          properties={ LCARS.EF_SUBTITLE }
+        />
+
+        <LCARSIcon
+          id="rightArrowIcon"
+          icon={ICONS.RIGHT_ARROW_IN_CIRCLE}
+          x={310} y={130}
+          //enabled={false}
+        />
+
+        <LCARSIcon
+          id="leftArrowIcon"
+          icon={ICONS.LEFT_ARROW_IN_CIRCLE}
+          x={310} y={190}
+          //enabled={false}
+        />
+
+        <LCARSText
+          id="networkIconDescription"
+          label="Networking"
+          x={450} y={80}
+          properties={ LCARS.EF_SUBTITLE }
+        />
+
+        <LCARSIcon
+          id="networkIcon"
+          icon={ICONS.NETWORK_CONNECTION}
+          x={490} y={130}
+        />
+
+        <LCARSIcon
+          id="networkNegIcon"
+          icon={ICONS.NETWORK_CONNECTION_NEGATIVE}
+          x={490} y={190}
+        />
+
+        <LCARSText
+          id="powerIconDescription"
+          label="Power"
+          x={630} y={80}
+          properties={ LCARS.EF_SUBTITLE }
+        />
+
+        <LCARSIcon
+          id="powerButtonIcon"
+          icon={ICONS.POWER_BUTTON_SVG}
+          x={640} y={130}
+        />
+
+        <LCARSIcon
+          id="batteryFullIcon"
+          icon={ICONS.BATTERY_FULL}
+          x={640} y={190}
+        />
+
+        <LCARSIcon
+          id="batteryHalfIcon"
+          icon={ICONS.BATTERY_HALF}
+          x={640} y={250}
+        />
+
+        <LCARSIcon
+          id="batteryEmptyIcon"
+          icon={ICONS.BATTERY_EMPTY}
+          x={640} y={310}
+        />
+
+        <LCARSIcon
+          id="batteryOnACIcon"
+          icon={ICONS.BATTERY_ON_AC}
+          x={640} y={370}
+        />
+
+        <LCARSIcon
+          id="batteryOnACNegIcon"
+          icon={ICONS.BATTERY_ON_AC_NEGATIVE}
+          x={640} y={430}
+        />
+
+        <LCARSText
+          id="weatherIconDescription"
+          label="Weather"
+          x={750} y={80}
+          properties={ LCARS.EF_SUBTITLE }
         />
 
       </LCARSBasicScreen>
@@ -85,13 +166,7 @@ class IconTestPage extends Component {
   }
 
 
-  private handleMenuItemOne(e: any) {
-    e.preventDefault();
-    this.setState({ navigate: true, path: "/componenttestpage" });
-    
-  }
-
-  private handleMenuItemTwo(e: any) {
+  private handleMenuBackButtonClick(e: any) {
     e.preventDefault();
     history.back();
   }

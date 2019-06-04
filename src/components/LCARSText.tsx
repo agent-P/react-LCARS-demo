@@ -20,7 +20,7 @@ class LCARSText extends LCARSComponent <LCARSTextProps> {
         x: 0,
         y: 0,
         color: LCARS.EC_ORANGE,
-        properties: LCARS.ES_LABEL_C,
+        properties: LCARS.ES_NONE,
         height: 0,
         width: LCARS.LCARS_BTN_WIDTH,
         scale: "1.0",

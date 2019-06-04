@@ -34,6 +34,7 @@ class App extends Component {
 
     this.handleMenuItemOne = this.handleMenuItemOne.bind(this);
     this.handleMenuItemTwo = this.handleMenuItemTwo.bind(this);
+    this.handleMenuItemThree = this.handleMenuItemThree.bind(this);
   }
  
   render() {
@@ -71,6 +72,14 @@ class App extends Component {
           handleClick={this.handleMenuItemTwo}
         />
 
+        <LCARSButton 
+          id="menuItemTwoButton"
+          label="Color Palette Test"
+          x={this.LEFT}
+          y={this.TOP + LCARS.LCARS_CORNER_HEIGHT + 2*LCARS.LCARS_BTN_HEIGHT + 3*LCARS.LCARS_SPACE}
+          handleClick={this.handleMenuItemThree}
+        />
+
 
       </LCARSMenuScreen>
     );
@@ -85,6 +94,11 @@ class App extends Component {
   private handleMenuItemTwo(e: any) {
     e.preventDefault();
     this.setState({ navigate: true, path: "/icontestpage" });
+  }
+
+  private handleMenuItemThree(e: any) {
+    e.preventDefault();
+    this.setState({ navigate: true, path: "/colorpalettetestpage" });
   }
 
 }

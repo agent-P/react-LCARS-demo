@@ -95,7 +95,7 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
         this.downColor = this.getDownColor(null);
         this.textColor = this.getTextColor();
         this.textAnchor = this.getTextAnchor(this.props.properties);
-        this.fontSize = LCARS.getLCARSFontSize(props.properties);
+        this.fontSize = LCARS.getLCARSFontSize(this.props.properties);
         this.animateElementFadeIn = null;
         this.animateElementFadeOut = null;
         this.duration = "";
