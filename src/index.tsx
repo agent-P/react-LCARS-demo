@@ -6,6 +6,10 @@ import App from './App';
 import ComponentTestPage from './ComponentTestPage'
 import IconTestPage from './IconTestPage'
 import ColorPaletteTestPage from './ColorPaletteTestPage'
+import ShapesTestPage from './ShapesTestPage'
+import ButtonsTestPage from './ButtonsTestPage'
+import TextTestPage from './TextTestPage'
+import IndicatorTestPage from './IndicatorTestPage'
 import * as serviceWorker from './serviceWorker';
 
 const routing = (
@@ -15,6 +19,10 @@ const routing = (
         <Route exact path="/componenttestpage" component={ComponentTestPage} />
         <Route exact path="/icontestpage" component={IconTestPage} />
         <Route exact path="/colorpalettetestpage" component={ColorPaletteTestPage} />
+        <Route exact path="/shapestestpage" component={ShapesTestPage} />
+        <Route exact path="/buttonstestpage" component={ButtonsTestPage} />
+        <Route exact path="/texttestpage" component={TextTestPage} />
+        <Route exact path="/indicatortestpage" component={IndicatorTestPage} />
         </div>
     </Router>
 )

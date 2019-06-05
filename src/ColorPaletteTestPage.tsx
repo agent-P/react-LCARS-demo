@@ -24,6 +24,8 @@ class ColorPaletteTestPage extends Component {
   protected RIGHT: number;
   protected BOTTOM: number;
 
+  protected SEQUENCE_TOP: number;
+
   protected width: number;
   protected height: number;
 
@@ -34,6 +36,8 @@ class ColorPaletteTestPage extends Component {
     this.TOP = 5;
     this.RIGHT  = 50;
     this.BOTTOM = 20;
+
+    this.SEQUENCE_TOP = this.TOP + 3*LCARS.LCARS_BTN_HEIGHT;
 
     this.width = 1920;
     this.height = 1200;
@@ -71,65 +75,229 @@ class ColorPaletteTestPage extends Component {
           iconLocation={LCARS.ES_LABEL_W}
         />
 
+        <LCARSText
+          id="enabledLabel"
+          label="Enabled"
+          x={325} y={this.SEQUENCE_TOP-LCARS.LCARS_BTN_HEIGHT}
+          properties={LCARS.EF_SUBTITLE}
+        />
+
+        <LCARSText
+          id="disabledLabel"
+          label="Disabled"
+          x={535} y={this.SEQUENCE_TOP-LCARS.LCARS_BTN_HEIGHT}
+          properties={LCARS.EF_SUBTITLE}
+        />
+
+        <LCARSText
+          id="enabledTextLabel"
+          label="Enabled Text"
+          x={825} y={this.SEQUENCE_TOP-LCARS.LCARS_BTN_HEIGHT}
+          properties={LCARS.EF_SUBTITLE}
+        />
+
+        <LCARSText
+          id="enabledWhiteLabel"
+          label="Enabled White Text"
+          x={825} y={this.SEQUENCE_TOP-LCARS.LCARS_BTN_HEIGHT + 1*(LCARS.LCARS_BTN_HEIGHT+LCARS.LCARS_SPACE)}
+          properties={LCARS.EF_SUBTITLE}
+          color={LCARS.EC_WHITE}
+        />
+
+        <LCARSText
+          id="disabledWhiteLabel"
+          label="Disabled White Text"
+          x={1125} y={this.SEQUENCE_TOP-LCARS.LCARS_BTN_HEIGHT + 1*(LCARS.LCARS_BTN_HEIGHT+LCARS.LCARS_SPACE)}
+          properties={LCARS.EF_SUBTITLE}
+          color={LCARS.EC_WHITE}
+          enabled={false}
+        />
+
+        <LCARSText
+          id="enabledLBlueLabel"
+          label="Enabled Light Blue Text"
+          x={825} y={this.SEQUENCE_TOP-LCARS.LCARS_BTN_HEIGHT + 2*(LCARS.LCARS_BTN_HEIGHT+LCARS.LCARS_SPACE)}
+          properties={LCARS.EF_SUBTITLE}
+          color={LCARS.EC_L_BLUE}
+        />
+
+        <LCARSText
+          id="disabledLBlueLabel"
+          label="Disabled Light Blue Text"
+          x={1125} y={this.SEQUENCE_TOP-LCARS.LCARS_BTN_HEIGHT + 2*(LCARS.LCARS_BTN_HEIGHT+LCARS.LCARS_SPACE)}
+          properties={LCARS.EF_SUBTITLE}
+          color={LCARS.EC_L_BLUE}
+          enabled={false}
+        />
+
+        <LCARSText
+          id="enabledMBlueLabel"
+          label="Enabled Medium Blue Text"
+          x={825} y={this.SEQUENCE_TOP-LCARS.LCARS_BTN_HEIGHT + 3*(LCARS.LCARS_BTN_HEIGHT+LCARS.LCARS_SPACE)}
+          properties={LCARS.EF_SUBTITLE}
+          color={LCARS.EC_M_BLUE}
+        />
+
+        <LCARSText
+          id="disabledMBlueLabel"
+          label="Disabled Medium Blue Text"
+          x={1125} y={this.SEQUENCE_TOP-LCARS.LCARS_BTN_HEIGHT + 3*(LCARS.LCARS_BTN_HEIGHT+LCARS.LCARS_SPACE)}
+          properties={LCARS.EF_SUBTITLE}
+          color={LCARS.EC_M_BLUE}
+          enabled={false}
+        />
+
+        <LCARSText
+          id="enabledBlueLabel"
+          label="Enabled Blue Text"
+          x={825} y={this.SEQUENCE_TOP-LCARS.LCARS_BTN_HEIGHT + 4*(LCARS.LCARS_BTN_HEIGHT+LCARS.LCARS_SPACE)}
+          properties={LCARS.EF_SUBTITLE}
+          color={LCARS.EC_BLUE}
+        />
+
+        <LCARSText
+          id="disabledBlueLabel"
+          label="Disabled Blue Text"
+          x={1125} y={this.SEQUENCE_TOP-LCARS.LCARS_BTN_HEIGHT + 4*(LCARS.LCARS_BTN_HEIGHT+LCARS.LCARS_SPACE)}
+          properties={LCARS.EF_SUBTITLE}
+          color={LCARS.EC_BLUE}
+          enabled={false}
+        />
+
+        <LCARSText
+          id="enabledDBlueLabel"
+          label="Enabled Dark Blue Text"
+          x={825} y={this.SEQUENCE_TOP-LCARS.LCARS_BTN_HEIGHT + 5*(LCARS.LCARS_BTN_HEIGHT+LCARS.LCARS_SPACE)}
+          properties={LCARS.EF_SUBTITLE}
+          color={LCARS.EC_D_BLUE}
+        />
+
+        <LCARSText
+          id="disabledDBlueLabel"
+          label="Disabled Dark Blue Text"
+          x={1125} y={this.SEQUENCE_TOP-LCARS.LCARS_BTN_HEIGHT + 5*(LCARS.LCARS_BTN_HEIGHT+LCARS.LCARS_SPACE)}
+          properties={LCARS.EF_SUBTITLE}
+          color={LCARS.EC_D_BLUE}
+          enabled={false}
+        />
+
+        <LCARSText
+          id="enabledYellowLabel"
+          label="Enabled Yellow Text"
+          x={825} y={this.SEQUENCE_TOP-LCARS.LCARS_BTN_HEIGHT + 6*(LCARS.LCARS_BTN_HEIGHT+LCARS.LCARS_SPACE)}
+          properties={LCARS.EF_SUBTITLE}
+          color={LCARS.EC_YELLOW}
+        />
+
+        <LCARSText
+          id="disabledYellowLabel"
+          label="Disabled Yellow Text"
+          x={1125} y={this.SEQUENCE_TOP-LCARS.LCARS_BTN_HEIGHT + 6*(LCARS.LCARS_BTN_HEIGHT+LCARS.LCARS_SPACE)}
+          properties={LCARS.EF_SUBTITLE}
+          color={LCARS.EC_YELLOW}
+          enabled={false}
+        />
+
+        <LCARSText
+          id="enabledOrangeLabel"
+          label="Enabled Orange Text"
+          x={825} y={this.SEQUENCE_TOP-LCARS.LCARS_BTN_HEIGHT + 7*(LCARS.LCARS_BTN_HEIGHT+LCARS.LCARS_SPACE)}
+          properties={LCARS.EF_SUBTITLE}
+          color={LCARS.EC_ORANGE}
+        />
+
+        <LCARSText
+          id="disabledOrangeLabel"
+          label="Disabled Orange Text"
+          x={1125} y={this.SEQUENCE_TOP-LCARS.LCARS_BTN_HEIGHT + 7*(LCARS.LCARS_BTN_HEIGHT+LCARS.LCARS_SPACE)}
+          properties={LCARS.EF_SUBTITLE}
+          color={LCARS.EC_ORANGE}
+          enabled={false}
+        />
+
+        <LCARSText
+          id="enabledRedLabel"
+          label="Enabled Red Text"
+          x={825} y={this.SEQUENCE_TOP-LCARS.LCARS_BTN_HEIGHT + 8*(LCARS.LCARS_BTN_HEIGHT+LCARS.LCARS_SPACE)}
+          properties={LCARS.EF_SUBTITLE}
+          color={LCARS.EC_RED}
+        />
+
+        <LCARSText
+          id="disabledRedLabel"
+          label="Disabled Red Text"
+          x={1125} y={this.SEQUENCE_TOP-LCARS.LCARS_BTN_HEIGHT + 8*(LCARS.LCARS_BTN_HEIGHT+LCARS.LCARS_SPACE)}
+          properties={LCARS.EF_SUBTITLE}
+          color={LCARS.EC_RED}
+          enabled={false}
+        />
+
+        <LCARSText
+          id="disabledTextLabel"
+          label="Disabled Text"
+          x={1125} y={this.SEQUENCE_TOP-LCARS.LCARS_BTN_HEIGHT}
+          properties={LCARS.EF_SUBTITLE}
+        />
+
         <LCARSRectangle
           id="colorPaletteOrangeRect"
           label="White"
-          x={300} y={70}
+          x={300} y={this.SEQUENCE_TOP}
           color={LCARS.EC_WHITE}
         />
 
         <LCARSRectangle
           id="colorPaletteLBlueRect"
           label="Light Blue"
-          x={300} y={70 + LCARS.LCARS_BTN_HEIGHT + LCARS.LCARS_SPACE}
+          x={300} y={this.SEQUENCE_TOP + LCARS.LCARS_BTN_HEIGHT + LCARS.LCARS_SPACE}
           color={LCARS.EC_L_BLUE}
         />
 
         <LCARSRectangle
           id="colorPaletteMBlueRect"
           label="Medium Blue"
-          x={300} y={70 + 2*LCARS.LCARS_BTN_HEIGHT + 2*LCARS.LCARS_SPACE}
+          x={300} y={this.SEQUENCE_TOP + 2*LCARS.LCARS_BTN_HEIGHT + 2*LCARS.LCARS_SPACE}
           color={LCARS.EC_M_BLUE}
         />
 
         <LCARSRectangle
           id="colorPaletteBlueRect"
           label="Blue"
-          x={300} y={70 + 3*LCARS.LCARS_BTN_HEIGHT + 3*LCARS.LCARS_SPACE}
+          x={300} y={this.SEQUENCE_TOP + 3*LCARS.LCARS_BTN_HEIGHT + 3*LCARS.LCARS_SPACE}
           color={LCARS.EC_BLUE}
         />
 
         <LCARSRectangle
           id="colorPaletteDBlueRect"
           label="Dark Blue"
-          x={300} y={70 + 4*LCARS.LCARS_BTN_HEIGHT + 4*LCARS.LCARS_SPACE}
+          x={300} y={this.SEQUENCE_TOP + 4*LCARS.LCARS_BTN_HEIGHT + 4*LCARS.LCARS_SPACE}
           color={LCARS.EC_D_BLUE}
         />
 
         <LCARSRectangle
           id="colorPaletteYellowRect"
           label="Yellow"
-          x={300} y={70 + 5*LCARS.LCARS_BTN_HEIGHT + 5*LCARS.LCARS_SPACE}
+          x={300} y={this.SEQUENCE_TOP + 5*LCARS.LCARS_BTN_HEIGHT + 5*LCARS.LCARS_SPACE}
           color={LCARS.EC_YELLOW}
         />
 
         <LCARSRectangle
           id="colorPaletteOrangeRect"
           label="Orange (default)"
-          x={300} y={70 + 6*LCARS.LCARS_BTN_HEIGHT + 6*LCARS.LCARS_SPACE}
+          x={300} y={this.SEQUENCE_TOP + 6*LCARS.LCARS_BTN_HEIGHT + 6*LCARS.LCARS_SPACE}
         />
 
         <LCARSRectangle
           id="colorPaletteRedRect"
           label="Red"
-          x={300} y={70 + 7*LCARS.LCARS_BTN_HEIGHT + 7*LCARS.LCARS_SPACE}
+          x={300} y={this.SEQUENCE_TOP + 7*LCARS.LCARS_BTN_HEIGHT + 7*LCARS.LCARS_SPACE}
           color={LCARS.EC_RED}
         />
 
         <LCARSRectangle
           id="colorPaletteWhiteeRectDis"
           label="White"
-          x={500} y={70}
+          x={500} y={this.SEQUENCE_TOP}
           color={LCARS.EC_WHITE}
           enabled={false}
         />
@@ -137,7 +305,7 @@ class ColorPaletteTestPage extends Component {
         <LCARSRectangle
           id="colorPaletteLBlueRectDis"
           label="Light Blue"
-          x={500} y={70 + LCARS.LCARS_BTN_HEIGHT + LCARS.LCARS_SPACE}
+          x={500} y={this.SEQUENCE_TOP + LCARS.LCARS_BTN_HEIGHT + LCARS.LCARS_SPACE}
           color={LCARS.EC_L_BLUE}
           enabled={false}
         />
@@ -145,7 +313,7 @@ class ColorPaletteTestPage extends Component {
         <LCARSRectangle
           id="colorPaletteMBlueRectDis"
           label="Medium Blue"
-          x={500} y={70 + 2*LCARS.LCARS_BTN_HEIGHT + 2*LCARS.LCARS_SPACE}
+          x={500} y={this.SEQUENCE_TOP + 2*LCARS.LCARS_BTN_HEIGHT + 2*LCARS.LCARS_SPACE}
           color={LCARS.EC_M_BLUE}
           enabled={false}
         />
@@ -153,7 +321,7 @@ class ColorPaletteTestPage extends Component {
         <LCARSRectangle
           id="colorPaletteBlueRectDis"
           label="Blue"
-          x={500} y={70 + 3*LCARS.LCARS_BTN_HEIGHT + 3*LCARS.LCARS_SPACE}
+          x={500} y={this.SEQUENCE_TOP + 3*LCARS.LCARS_BTN_HEIGHT + 3*LCARS.LCARS_SPACE}
           color={LCARS.EC_BLUE}
           enabled={false}
         />
@@ -161,7 +329,7 @@ class ColorPaletteTestPage extends Component {
         <LCARSRectangle
           id="colorPaletteDBlueRectDis"
           label="Dark Blue"
-          x={500} y={70 + 4*LCARS.LCARS_BTN_HEIGHT + 4*LCARS.LCARS_SPACE}
+          x={500} y={this.SEQUENCE_TOP + 4*LCARS.LCARS_BTN_HEIGHT + 4*LCARS.LCARS_SPACE}
           color={LCARS.EC_D_BLUE}
           enabled={false}
         />
@@ -169,7 +337,7 @@ class ColorPaletteTestPage extends Component {
         <LCARSRectangle
           id="colorPaletteYellowRectDis"
           label="Yellow"
-          x={500} y={70 + 5*LCARS.LCARS_BTN_HEIGHT + 5*LCARS.LCARS_SPACE}
+          x={500} y={this.SEQUENCE_TOP + 5*LCARS.LCARS_BTN_HEIGHT + 5*LCARS.LCARS_SPACE}
           color={LCARS.EC_YELLOW}
           enabled={false}
         />
@@ -177,14 +345,14 @@ class ColorPaletteTestPage extends Component {
         <LCARSRectangle
           id="colorPaletteOrangeRectDis"
           label="Orange (default)"
-          x={500} y={70 + 6*LCARS.LCARS_BTN_HEIGHT + 6*LCARS.LCARS_SPACE}
+          x={500} y={this.SEQUENCE_TOP + 6*LCARS.LCARS_BTN_HEIGHT + 6*LCARS.LCARS_SPACE}
           enabled={false}
         />
 
         <LCARSRectangle
           id="colorPaletteRedRectDis"
           label="Red"
-          x={500} y={70 + 7*LCARS.LCARS_BTN_HEIGHT + 7*LCARS.LCARS_SPACE}
+          x={500} y={this.SEQUENCE_TOP + 7*LCARS.LCARS_BTN_HEIGHT + 7*LCARS.LCARS_SPACE}
           color={LCARS.EC_RED}
           enabled={false}
         />

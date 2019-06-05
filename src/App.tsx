@@ -35,6 +35,9 @@ class App extends Component {
     this.handleMenuItemOne = this.handleMenuItemOne.bind(this);
     this.handleMenuItemTwo = this.handleMenuItemTwo.bind(this);
     this.handleMenuItemThree = this.handleMenuItemThree.bind(this);
+    this.handleMenuItemFour = this.handleMenuItemFour.bind(this);
+    this.handleMenuItemFive = this.handleMenuItemFive.bind(this);
+    this.handleMenuItemSix = this.handleMenuItemSix.bind(this);
   }
  
   render() {
@@ -51,14 +54,11 @@ class App extends Component {
         id="menuScreen"
         width={1920} height={1200}
         title="LCARS Component Testing"
-        //vbWidth={2*1920} vbHeight={2*1200}
-        //color={LCARS.EC_L_BLUE}
-        //fontSize={LCARS.EF_SUBTITLE}
         >
 
         <LCARSButton 
           id="menuItemOneButton"
-          label="Component Test"
+          label="Shapes Test"
           x={this.LEFT}
           y={this.TOP + LCARS.LCARS_CORNER_HEIGHT + LCARS.LCARS_SPACE}
           handleClick={this.handleMenuItemOne}
@@ -73,13 +73,36 @@ class App extends Component {
         />
 
         <LCARSButton 
-          id="menuItemTwoButton"
+          id="menuItemThreeButton"
           label="Color Palette Test"
           x={this.LEFT}
           y={this.TOP + LCARS.LCARS_CORNER_HEIGHT + 2*LCARS.LCARS_BTN_HEIGHT + 3*LCARS.LCARS_SPACE}
           handleClick={this.handleMenuItemThree}
         />
 
+        <LCARSButton 
+          id="menuItemFourButton"
+          label="Buttons Test"
+          x={this.LEFT}
+          y={this.TOP + LCARS.LCARS_CORNER_HEIGHT + 3*LCARS.LCARS_BTN_HEIGHT + 4*LCARS.LCARS_SPACE}
+          handleClick={this.handleMenuItemFour}
+        />
+
+        <LCARSButton 
+          id="menuItemFiveButton"
+          label="Text Test"
+          x={this.LEFT}
+          y={this.TOP + LCARS.LCARS_CORNER_HEIGHT + 4*LCARS.LCARS_BTN_HEIGHT + 5*LCARS.LCARS_SPACE}
+          handleClick={this.handleMenuItemFive}
+        />
+
+        <LCARSButton 
+          id="menuItemSixButton"
+          label="Indicator Test"
+          x={this.LEFT}
+          y={this.TOP + LCARS.LCARS_CORNER_HEIGHT + 5*LCARS.LCARS_BTN_HEIGHT + 6*LCARS.LCARS_SPACE}
+          handleClick={this.handleMenuItemSix}
+        />
 
       </LCARSMenuScreen>
     );
@@ -88,7 +111,7 @@ class App extends Component {
 
   private handleMenuItemOne(e: any) {
     e.preventDefault();
-    this.setState({ navigate: true, path: "/componenttestpage" });
+    this.setState({ navigate: true, path: "/shapestestpage" });
   }
 
   private handleMenuItemTwo(e: any) {
@@ -101,6 +124,20 @@ class App extends Component {
     this.setState({ navigate: true, path: "/colorpalettetestpage" });
   }
 
+  private handleMenuItemFour(e: any) {
+    e.preventDefault();
+    this.setState({ navigate: true, path: "/buttonstestpage" });
+  }
+
+  private handleMenuItemFive(e: any) {
+    e.preventDefault();
+    this.setState({ navigate: true, path: "/texttestpage" });
+  }
+
+  private handleMenuItemSix(e: any) {
+    e.preventDefault();
+    this.setState({ navigate: true, path: "/indicatortestpage" });
+  }
 }
 
 export default App;

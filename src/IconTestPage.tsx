@@ -161,6 +161,195 @@ class IconTestPage extends Component {
           properties={ LCARS.EF_SUBTITLE }
         />
 
+        <LCARSIcon
+          id="weather_sun_rise"
+          icon={ICONS.WEATHER_SUN_RISE}
+          x={775} y={130}
+          color={LCARS.EC_YELLOW}
+        />
+
+        <LCARSIcon
+          id="weather_sun_set"
+          icon={ICONS.WEATHER_SUN_SET}
+          x={775} y={190}
+          color={LCARS.EC_YELLOW}
+        />
+
+        <LCARSIcon
+          id="weather_moon_rise"
+          icon={ICONS.WEATHER_MOON_RISE}
+          x={775} y={250}
+          color={LCARS.EC_L_BLUE}
+        />
+
+        <LCARSIcon
+          id="weather_moon_set"
+          icon={ICONS.WEATHER_MOON_SET}
+          x={775} y={310}
+          color={LCARS.EC_L_BLUE}
+        />
+
+        <LCARSIcon
+          id="weather_heat_warn"
+          icon={ICONS.WEATHER_HEAT_WARNING}
+          x={875} y={130}
+          color={LCARS.EC_RED}
+        />
+
+        <LCARSIcon
+          id="weather_clear_day"
+          icon={ICONS.WEATHER_CLEAR_DAY}
+          x={875} y={190}
+          color={LCARS.EC_YELLOW}
+        />
+
+        <LCARSIcon
+          id="weather_clear_night"
+          icon={ICONS.WEATHER_CLEAR_NIGHT}
+          x={875} y={250}
+          color={LCARS.EC_L_BLUE}
+        />
+
+        <LCARSIcon
+          id="weather_clear_moon"
+          icon={ICONS.WEATHER_CLEAR_MOON_NIGHT}
+          x={875} y={310}
+          color={LCARS.EC_L_BLUE}
+        />
+
+        <LCARSIcon
+          id="weather_part_cloud_day"
+          icon={ICONS.WEATHER_PARTLY_CLOUDY_DAY}
+          x={975} y={130}
+          color={LCARS.EC_YELLOW}
+        />
+
+        <LCARSIcon
+          id="weather_part_cloud_night"
+          icon={ICONS.WEATHER_PARTLY_CLOUDY_NIGHT}
+          x={975} y={190}
+          color={LCARS.EC_L_BLUE}
+        />
+
+        <LCARSIcon
+          id="weather_rain_chance_day"
+          icon={ICONS.WEATHER_RAIN_CHANCE_DAY}
+          x={975} y={250}
+          color={LCARS.EC_YELLOW}
+        />
+
+        <LCARSIcon
+          id="weather_rain_chance_night"
+          icon={ICONS.WEATHER_RAIN_CHANCE_NIGHT}
+          x={975} y={310}
+          color={LCARS.EC_L_BLUE}
+        />
+
+        <LCARSIcon
+          id="weather_rain"
+          icon={ICONS.WEATHER_RAIN}
+          x={1075} y={130}
+          color={LCARS.EC_ORANGE}
+        />
+
+        <LCARSIcon
+          id="weather_rain_heavy"
+          icon={ICONS.WEATHER_RAIN_HEAVY}
+          x={1075} y={190}
+          color={LCARS.EC_ORANGE}
+        />
+
+        <LCARSIcon
+          id="weather_rain_light"
+          icon={ICONS.WEATHER_RAIN_LIGHT}
+          x={1075} y={250}
+          color={LCARS.EC_ORANGE}
+        />
+
+        <LCARSIcon
+          id="weather_snow_chance_day"
+          icon={ICONS.WEATHER_SNOW_CHANCE_DAY}
+          x={975} y={370}
+          color={LCARS.EC_WHITE}
+        />
+
+        <LCARSIcon
+          id="weather_snow_chance_night"
+          icon={ICONS.WEATHER_SNOW_CHANCE_NIGHT}
+          x={975} y={430}
+          color={LCARS.EC_L_BLUE}
+        />
+
+        <LCARSIcon
+          id="weather_snow"
+          icon={ICONS.WEATHER_SNOW}
+          x={1175} y={130}
+          color={LCARS.EC_WHITE}
+        />
+
+        <LCARSIcon
+          id="weather_snow_heavy"
+          icon={ICONS.WEATHER_SNOW_HEAVY}
+          x={1175} y={190}
+          color={LCARS.EC_WHITE}
+        />
+
+        <LCARSIcon
+          id="weather_snow_rain"
+          icon={ICONS.WEATHER_SNOW_RAIN}
+          x={1175} y={250}
+          color={LCARS.EC_WHITE}
+        />
+
+        <LCARSIcon
+          id="weather_hail"
+          icon={ICONS.WEATHER_HAIL}
+          x={1275} y={130}
+          color={LCARS.EC_ORANGE}
+        />
+
+        <LCARSIcon
+          id="weather_lightning"
+          icon={ICONS.WEATHER_LIGHTNING}
+          x={1275} y={190}
+          color={LCARS.EC_ORANGE}
+        />
+
+        <LCARSIcon
+          id="weather_rain_thunderstorm"
+          icon={ICONS.WEATHER_RAIN_THUNDERSTORM}
+          x={1275} y={250}
+          color={LCARS.EC_ORANGE}
+        />
+
+        <LCARSIcon
+          id="weather_wind"
+          icon={ICONS.WEATHER_WIND}
+          x={1375} y={130}
+          color={LCARS.EC_WHITE}
+        />
+
+        <LCARSIcon
+          id="weather_wind_breezy"
+          icon={ICONS.WEATHER_WIND_BREEZY}
+          x={1375} y={190}
+          color={LCARS.EC_WHITE}
+        />
+
+        <LCARSIcon
+          id="weather_wind_cloudy"
+          icon={ICONS.WEATHER_WIND_CLOUDY}
+          x={1375} y={250}
+          color={LCARS.EC_WHITE}
+        />
+
+        <LCARSIcon
+          id="weather_snow_blowing"
+          icon={ICONS.WEATHER_SNOW_BLOWING}
+          x={1375} y={310}
+          color={LCARS.EC_WHITE}
+        />
+
       </LCARSBasicScreen>
     );
   }
