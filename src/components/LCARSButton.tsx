@@ -41,7 +41,7 @@ class LCARSButton extends LCARSComponent <LCARSButtonProps> {
         super(props);
 
         if((props.properties & LCARS.ES_RECT_RND) == 0) {
-            this.height = this.props.height*LCARS.LCARS_BTN_HEIGHT + (this.props.height-1)*LCARS.LCARS_BTN_SPACING;
+            this.height = this.height*LCARS.LCARS_BTN_HEIGHT + (this.height-1)*LCARS.LCARS_BTN_SPACING;
         }
         else {
             this.height = LCARS.LCARS_BTN_HEIGHT;

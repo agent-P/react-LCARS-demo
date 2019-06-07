@@ -56,6 +56,13 @@ class ShapesTestPage extends Component {
         title="LCARS Shapes Testing"
         >
 
+        <LCARSText 
+          id="cornerDescriptionText"
+          label="Corner Components"
+          properties={ LCARS.EF_SUBTITLE }
+          x={800} y={90}
+        />
+
         <LCARSButton 
           id="shapesTestingBackButton"
           label="Back"
@@ -70,13 +77,265 @@ class ShapesTestPage extends Component {
         <LCARSCorner
           id = 'ULC'
           label = 'Upper Left'
-          x={200}
+          x={300}
           y={this.TOP + LCARS.FONT_TITLE_SIZE + LCARS.LCARS_BTN_HEIGHT + 2*LCARS.LCARS_SPACE}
           width={600}
           height={1}
           properties={LCARS.ES_SHAPE_NW | LCARS.EC_ORANGE}
+          //enabled={false}
        />
 
+        <LCARSCorner
+          id = 'URC'
+          label = 'Upper Right'
+          x={900 + LCARS.LCARS_SPACE}
+          y={this.TOP + LCARS.FONT_TITLE_SIZE + LCARS.LCARS_BTN_HEIGHT + 2*LCARS.LCARS_SPACE}
+          width={600}
+          height={1}
+          properties={LCARS.ES_SHAPE_NE | LCARS.EC_ORANGE}
+          //enabled={false}
+       />
+
+        <LCARSCorner
+          id = 'LLC'
+          label = 'Lower Left'
+          x={300}
+          y={this.TOP + LCARS.FONT_TITLE_SIZE + LCARS.LCARS_BTN_HEIGHT + LCARS.LCARS_CORNER_HEIGHT + 3*LCARS.LCARS_SPACE}
+          width={600}
+          height={1}
+          properties={LCARS.ES_SHAPE_SW | LCARS.EC_ORANGE}
+          //enabled={false}
+       />
+
+        <LCARSCorner
+          id = 'LRC'
+          label = 'Lower Right'
+          x={900 + LCARS.LCARS_SPACE}
+          y={this.TOP + LCARS.FONT_TITLE_SIZE + LCARS.LCARS_BTN_HEIGHT + LCARS.LCARS_CORNER_HEIGHT + 3*LCARS.LCARS_SPACE}
+          width={600}
+          height={1}
+          properties={LCARS.ES_SHAPE_SE | LCARS.EC_ORANGE}
+          //enabled={false}
+       />
+
+        <LCARSText 
+          id="rectangleDescriptionText"
+          label="Rectangle Components"
+          properties={ LCARS.EF_SUBTITLE }
+          x={300} y={this.TOP + 6*LCARS.LCARS_BTN_HEIGHT + 6*LCARS.LCARS_SPACE}
+        />
+
+        <LCARSRectangle
+          id="sizeOneRect"
+          label="Rectangle"
+          properties={LCARS.ES_LABEL_NE | LCARS.EF_BODY}
+          x={300} y={this.TOP + 7*LCARS.LCARS_BTN_HEIGHT + 7*LCARS.LCARS_SPACE}
+          auxLabel="default size"
+          auxLabelProperties={LCARS.ES_LABEL_SW | LCARS.EC_BLUE | LCARS.EF_BODY}
+        />
+
+        <LCARSRectangle
+          id="sizeTwoRect"
+          label="Rectangle"
+          properties={LCARS.ES_LABEL_NE | LCARS.EF_BODY}
+          x={300} y={this.TOP + 8*LCARS.LCARS_BTN_HEIGHT + 8*LCARS.LCARS_SPACE}
+          height={120}
+          auxLabel="default width x 120"
+          auxLabelProperties={LCARS.ES_LABEL_SW | LCARS.EC_BLUE | LCARS.EF_BODY}
+        />
+
+        <LCARSRectangle
+          id="sizeThreeRect"
+          label="Rectangle"
+          properties={LCARS.ES_LABEL_NE | LCARS.EF_BODY}
+          x={300} y={this.TOP + 8*LCARS.LCARS_BTN_HEIGHT + 9*LCARS.LCARS_SPACE + 120}
+          height={120} width={120}
+          auxLabel="120 x 120"
+          auxLabelProperties={LCARS.ES_LABEL_SW | LCARS.EC_BLUE | LCARS.EF_BODY}
+        />
+
+        <LCARSRectangle
+          id="sizeOneRoundRect"
+          label="ES_RECT_RND"
+          properties={LCARS.ES_LABEL_NE | LCARS.ES_RECT_RND | LCARS.EF_BODY}
+          x={600} y={this.TOP + 7*LCARS.LCARS_BTN_HEIGHT + 7*LCARS.LCARS_SPACE}
+          auxLabel="default size"
+          auxLabelProperties={LCARS.ES_LABEL_SW | LCARS.EC_BLUE | LCARS.EF_BODY}
+        />
+
+        <LCARSRectangle
+          id="sizeOneRoundRectRndE"
+          label="ES_RECT_RND_E"
+          properties={LCARS.ES_LABEL_NE | LCARS.ES_RECT_RND_E | LCARS.EF_BODY}
+          x={600} y={this.TOP + 8*LCARS.LCARS_BTN_HEIGHT + 8*LCARS.LCARS_SPACE}
+          auxLabel="default size"
+          auxLabelProperties={LCARS.ES_LABEL_SW | LCARS.EC_BLUE | LCARS.EF_BODY}
+        />
+
+        <LCARSRectangle
+          id="sizeOneRoundRectRndW"
+          label="ES_RECT_RND_W"
+          properties={LCARS.ES_LABEL_NE | LCARS.ES_RECT_RND_W | LCARS.EF_BODY}
+          x={600} y={this.TOP + 9*LCARS.LCARS_BTN_HEIGHT + 9*LCARS.LCARS_SPACE}
+          auxLabel="default size"
+          auxLabelProperties={LCARS.ES_LABEL_SW | LCARS.EC_BLUE | LCARS.EF_BODY}
+        />
+
+        <LCARSText 
+          id="disabledShapesDescriptionText"
+          label="Disabled Shape Components"
+          properties={ LCARS.EF_SUBTITLE }
+          x={900} y={this.TOP + 6*LCARS.LCARS_BTN_HEIGHT + 6*LCARS.LCARS_SPACE}
+        />
+
+        <LCARSRectangle
+          id="sizeOneRect"
+          label="Rectangle"
+          properties={LCARS.ES_LABEL_NE | LCARS.EF_BODY}
+          x={900} y={this.TOP + 7*LCARS.LCARS_BTN_HEIGHT + 7*LCARS.LCARS_SPACE}
+          auxLabel="default size"
+          auxLabelProperties={LCARS.ES_LABEL_SW | LCARS.EC_BLUE | LCARS.EF_BODY}
+          enabled={false}
+        />
+
+        <LCARSRectangle
+          id="sizeTwoRect"
+          label="Rectangle"
+          properties={LCARS.ES_LABEL_NE | LCARS.EF_BODY}
+          x={900} y={this.TOP + 8*LCARS.LCARS_BTN_HEIGHT + 8*LCARS.LCARS_SPACE}
+          height={120}
+          auxLabel="default width x 120"
+          auxLabelProperties={LCARS.ES_LABEL_SW | LCARS.EC_BLUE | LCARS.EF_BODY}
+          enabled={false}
+        />
+
+        <LCARSRectangle
+          id="sizeThreeRect"
+          label="Rectangle"
+          properties={LCARS.ES_LABEL_NE | LCARS.EF_BODY}
+          x={900} y={this.TOP + 8*LCARS.LCARS_BTN_HEIGHT + 9*LCARS.LCARS_SPACE + 120}
+          height={120} width={120}
+          auxLabel="120 x 120"
+          auxLabelProperties={LCARS.ES_LABEL_SW | LCARS.EC_BLUE | LCARS.EF_BODY}
+          enabled={false}
+        />
+
+        <LCARSRectangle
+          id="sizeOneRoundRect"
+          label="ES_RECT_RND"
+          properties={LCARS.ES_LABEL_NE | LCARS.ES_RECT_RND | LCARS.EF_BODY}
+          x={1200} y={this.TOP + 7*LCARS.LCARS_BTN_HEIGHT + 7*LCARS.LCARS_SPACE}
+          auxLabel="default size"
+          auxLabelProperties={LCARS.ES_LABEL_SW | LCARS.EC_BLUE | LCARS.EF_BODY}
+          enabled={false}
+        />
+
+        <LCARSRectangle
+          id="sizeOneRoundRectRndE"
+          label="ES_RECT_RND_E"
+          properties={LCARS.ES_LABEL_NE | LCARS.ES_RECT_RND_E | LCARS.EF_BODY}
+          x={1200} y={this.TOP + 8*LCARS.LCARS_BTN_HEIGHT + 8*LCARS.LCARS_SPACE}
+          auxLabel="default size"
+          auxLabelProperties={LCARS.ES_LABEL_SW | LCARS.EC_BLUE | LCARS.EF_BODY}
+          enabled={false}
+        />
+
+        <LCARSRectangle
+          id="sizeOneRoundRectRndW"
+          label="ES_RECT_RND_W"
+          properties={LCARS.ES_LABEL_NE | LCARS.ES_RECT_RND_W | LCARS.EF_BODY}
+          x={1200} y={this.TOP + 9*LCARS.LCARS_BTN_HEIGHT + 9*LCARS.LCARS_SPACE}
+          auxLabel="default size"
+          auxLabelProperties={LCARS.ES_LABEL_SW | LCARS.EC_BLUE | LCARS.EF_BODY}
+          enabled={false}
+        />
+
+        <LCARSCorner
+          id = 'disabledULC'
+          label = 'Upper Left'
+          x={1200}
+          y={700}
+          width={600}
+          height={1}
+          properties={LCARS.ES_SHAPE_NW | LCARS.EC_ORANGE}
+          enabled={false}
+       />
+
+        <LCARSText 
+          id="labelLocationsDescriptionText"
+          label="Component Label Locations"
+          properties={ LCARS.EF_SUBTITLE }
+          x={300} y={800}
+        />
+
+        <LCARSRectangle
+          id="nwRect"
+          label="Northwest"
+          properties={LCARS.ES_LABEL_NW | LCARS.EF_BODY | LCARS.ES_RECT_RND}
+          x={300} y={800 + 1*LCARS.LCARS_BTN_HEIGHT + 1*LCARS.LCARS_SPACE}
+        />
+
+        <LCARSRectangle
+          id="wRect"
+          label="West"
+          properties={LCARS.ES_LABEL_W | LCARS.EF_BODY | LCARS.ES_RECT_RND}
+          x={300} y={800 + 2*LCARS.LCARS_BTN_HEIGHT + 2*LCARS.LCARS_SPACE}
+        />
+
+        <LCARSRectangle
+          id="swRect"
+          label="Southwest"
+          properties={LCARS.ES_LABEL_SW | LCARS.EF_BODY | LCARS.ES_RECT_RND}
+          x={300} y={800 + 3*LCARS.LCARS_BTN_HEIGHT + 3*LCARS.LCARS_SPACE}
+        />
+
+        <LCARSRectangle
+          id="nRect"
+          label="North"
+          properties={LCARS.ES_LABEL_N | LCARS.EF_BODY | LCARS.ES_RECT_RND}
+          x={300 + 1*LCARS.LCARS_BTN_WIDTH + 1*LCARS.LCARS_BTN_SPACING}
+          y={800 + 1*LCARS.LCARS_BTN_HEIGHT + 1*LCARS.LCARS_SPACE}
+        />
+
+        <LCARSRectangle
+          id="cRect"
+          label="Center"
+          properties={LCARS.ES_LABEL_C | LCARS.EF_BODY | LCARS.ES_RECT_RND}
+          x={300 + 1*LCARS.LCARS_BTN_WIDTH + 1*LCARS.LCARS_BTN_SPACING}
+          y={800 + 2*LCARS.LCARS_BTN_HEIGHT + 2*LCARS.LCARS_SPACE}
+        />
+
+        <LCARSRectangle
+          id="sRect"
+          label="South"
+          properties={LCARS.ES_LABEL_S | LCARS.EF_BODY | LCARS.ES_RECT_RND}
+          x={300 + 1*LCARS.LCARS_BTN_WIDTH + 1*LCARS.LCARS_BTN_SPACING}
+          y={800 + 3*LCARS.LCARS_BTN_HEIGHT + 3*LCARS.LCARS_SPACE}
+        />
+
+        <LCARSRectangle
+          id="neRect"
+          label="Northeast"
+          properties={LCARS.ES_LABEL_NE | LCARS.EF_BODY | LCARS.ES_RECT_RND}
+          x={300 + 2*LCARS.LCARS_BTN_WIDTH + 2*LCARS.LCARS_BTN_SPACING}
+          y={800 + 1*LCARS.LCARS_BTN_HEIGHT + 1*LCARS.LCARS_SPACE}
+        />
+
+        <LCARSRectangle
+          id="eRect"
+          label="East"
+          properties={LCARS.ES_LABEL_E | LCARS.EF_BODY | LCARS.ES_RECT_RND}
+          x={300 + 2*LCARS.LCARS_BTN_WIDTH + 2*LCARS.LCARS_BTN_SPACING}
+          y={800 + 2*LCARS.LCARS_BTN_HEIGHT + 2*LCARS.LCARS_SPACE}
+        />
+
+        <LCARSRectangle
+          id="seRect"
+          label="Southeast"
+          properties={LCARS.ES_LABEL_SE | LCARS.EF_BODY | LCARS.ES_RECT_RND}
+          x={300 + 2*LCARS.LCARS_BTN_WIDTH + 2*LCARS.LCARS_BTN_SPACING}
+          y={800 + 3*LCARS.LCARS_BTN_HEIGHT + 3*LCARS.LCARS_SPACE}
+        />
 
       </LCARSBasicScreen>
     );

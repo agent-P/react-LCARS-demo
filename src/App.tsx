@@ -104,6 +104,15 @@ class App extends Component {
           handleClick={this.handleMenuItemSix}
         />
 
+        <LCARSRectangle
+          id="appMenuSpacer"
+          label=""
+          properties={LCARS.ES_LABEL_NE}
+          x={this.LEFT}
+          y={this.TOP + LCARS.LCARS_CORNER_HEIGHT + 6*LCARS.LCARS_BTN_HEIGHT + 7*LCARS.LCARS_SPACE}
+          height={1200 - (this.TOP + 2*LCARS.LCARS_CORNER_HEIGHT + 6*LCARS.LCARS_BTN_HEIGHT + 8*LCARS.LCARS_SPACE + this.BOTTOM)}
+        />
+
       </LCARSMenuScreen>
     );
   }

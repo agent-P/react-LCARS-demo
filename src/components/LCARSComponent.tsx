@@ -163,8 +163,8 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
         return(
            <svg className={this.getClassName(this.props.static, this.props.enabled)}
                id={this.props.id}
-               height={this.height+3} 
-               width={this.width+3} 
+               height={this.height+2} 
+               width={this.width+2} 
                fill={this.state.color}
                onMouseOver={this.handleMouseOver}
                onMouseOut={this.handleMouseOut}
@@ -437,7 +437,7 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
     
     
     getShape() {
-        var rectString = "M0,0";
+        var rectString = "M1,1";
         
         var westEndString;
         var eastEndString;
@@ -452,7 +452,7 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
         switch(rectType) {
             case LCARS.ES_RECT_RND:
             case LCARS.ES_RECT_RND_W:
-                westEndString = " m" + (this.height/2) + "," + (this.height+1) +
+                westEndString = " m" + (this.height/2) + "," + (this.height) +
                 " c-" + (this.height*.65) + ",0 -" + (this.height*.65) + ",-" + this.height + " 0,-" + this.height;
                 break;
             case LCARS.ES_RECT_RND_E:

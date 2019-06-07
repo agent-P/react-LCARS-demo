@@ -69,24 +69,77 @@ class TextTestPage extends Component {
 
         <LCARSText 
           id="testTitleText"
-          label="TITLE text"
+          label="LCARS TITLE text"
           properties={ LCARS.EF_TITLE }
-          x={480} y={100}
+          x={300} y={150}
+        />
+
+        <LCARSText 
+          id="testSubTitleText"
+          label="LCARS SUBTITLE text"
+          properties={ LCARS.EF_SUBTITLE }
+          x={300} y={220}
+        />
+
+        <LCARSText 
+          id="testButtonText"
+          label="LCARS BUTTON text"
+          properties={ LCARS.EF_BUTTON }
+          x={300} y={270}
+        />
+
+        <LCARSText 
+          id="testBodyText"
+          label="LCARS BODY text - (NORMAL text)"
+          properties={ LCARS.EF_BODY }
+          x={300} y={310}
+        />
+
+        <LCARSText 
+          id="testTinyText"
+          label="LCARS TINY text"
+          properties={ LCARS.EF_TINY }
+          x={300} y={340}
         />
 
         <LCARSText 
           id="testLowerCaseText"
-          label="Lower case characters: abcdefghijklmnopqrstuvwxyz"
+          label="Lower case characters: abcdefghijklmnopqrstuvwxyz1234567890-=,./;'[]"
           properties={ LCARS.EF_TITLE }
-          x={780} y={100}
+          x={200} y={800}
         />
 
         <LCARSText 
-          id="testNormalText"
-          label="NORMAL text"
-          //width={300}
-          properties={ LCARS.EF_NORMAL }
-          x={330} y={100}
+          id="testUpperCaseText"
+          label="Upper case characters: ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+<>?:\{}|"
+          properties={ LCARS.EF_TITLE }
+          x={200} y={900}
+        />
+
+        <LCARSText 
+          id="testTextAreaWrapText"
+          label="Text Area wrap test"
+          properties={ LCARS.EF_SUBTITLE }
+          x={800} y={150}
+        />
+
+        <LCARSRectangle
+          id="testTextAreaWrapTextRect"
+          x={800} y={185}
+          width={400} height={2}
+        />
+
+        <LCARSText 
+          id="testTextAreaScrollText"
+          label="Scrolling Text Area test"
+          properties={ LCARS.EF_SUBTITLE }
+          x={1300} y={150}
+        />
+
+        <LCARSRectangle
+          id="testTextAreaWrapTextRect"
+          x={1300} y={185}
+          width={400} height={2}
         />
 
       </LCARSBasicScreen>
