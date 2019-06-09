@@ -58,8 +58,8 @@ class LCARSCorner extends LCARSComponent <LCARSCornerProps> {
 
     getShape() {
         var pathString = "M1,1";
-        var armStringW = (this.width-185) + ",1 l0,30 l-" + (this.width-185);
-        var armStringE = (this.width-185) + ",1 l0,-30 l" + (this.width-185);
+        var armStringW = (this.width-185) + ",0 l0,30 l-" + (this.width-185);
+        var armStringE = (this.width-185) + ",0 l0,-30 l" + (this.width-185);
         var sideStringT = " l0," + (this.height - LCARS.LCARS_CORNER_HEIGHT) + " l-150,0 l0,-" + (this.height - LCARS.LCARS_CORNER_HEIGHT);
         var sideStringB = " l0,-" + (this.height - LCARS.LCARS_CORNER_HEIGHT) + " l150,0 l0," + (this.height - LCARS.LCARS_CORNER_HEIGHT);
         

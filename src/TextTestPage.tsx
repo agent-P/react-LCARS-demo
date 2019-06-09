@@ -6,6 +6,7 @@ import LCARSCorner from './components/LCARSCorner';
 import LCARS from './components/LCARS';
 import ICONS from './resources/ICONS';
 import LCARSText from './components/LCARSText';
+import LCARSTextArea from './components/LCARSTextArea';
 import LCARSRectangle from './components/LCARSRectangle';
 import LCARSBasicScreen from './components/LCARSBasicScreen';
 import LCARSIcon from './components/LCARSIcon';
@@ -27,6 +28,8 @@ class TextTestPage extends Component {
   protected width: number;
   protected height: number;
 
+  protected scrollingLineCount: number;
+
   constructor(props: any) {
     super(props);
 
@@ -38,7 +41,10 @@ class TextTestPage extends Component {
     this.width = 1920;
     this.height = 1200;
 
+    this.scrollingLineCount = 0;
+
     this.handleMenuBackButtonClick = this.handleMenuBackButtonClick.bind(this);
+    this.handleAddLineButtonClick = this.handleAddLineButtonClick.bind(this);
   }
  
   render() {
@@ -104,16 +110,28 @@ class TextTestPage extends Component {
 
         <LCARSText 
           id="testLowerCaseText"
-          label="Lower case characters: abcdefghijklmnopqrstuvwxyz1234567890-=,./;'[]"
+          label="Lower case characters: abcdefghijklmnopqrstuvwxyz1234567890-=,./;'[]`"
           properties={ LCARS.EF_TITLE }
-          x={200} y={800}
+          x={150} y={800}
+        />
+
+        <LCARSRectangle
+          id="testLowerCaseTextRectWidth"
+          x={150} y={870}
+          width={LCARS.getTextWidth3("Lower case characters: abcdefghijklmnopqrstuvwxyz1234567890-=,./;'[]`", 60)} height={2}
         />
 
         <LCARSText 
           id="testUpperCaseText"
-          label="Upper case characters: ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+<>?:\{}|"
+          label={`Upper case characters: ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+<>?:\\{}|~"`}
           properties={ LCARS.EF_TITLE }
-          x={200} y={900}
+          x={150} y={900}
+        />
+
+        <LCARSRectangle
+          id="testUpperCaseTextRectWidth"
+          x={150} y={970}
+          width={LCARS.getTextWidth3(`Upper case characters: ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+<>?:\\{}|~"`, 60)} height={2}
         />
 
         <LCARSText 
@@ -137,9 +155,25 @@ class TextTestPage extends Component {
         />
 
         <LCARSRectangle
-          id="testTextAreaWrapTextRect"
+          id="testTextAreaScrollTextRect"
           x={1300} y={185}
           width={400} height={2}
+        />
+
+        <LCARSButton
+          id="testTextAreaScrollAddLineButton"
+          label="Add Line"
+          x={1710} y={185}
+          properties={LCARS.ES_RECT_RND | LCARS.ES_LABEL_C}
+          handleClick={this.handleAddLineButtonClick}
+        />
+
+        <LCARSTextArea
+          id="testTextAreaWrap"
+          x={1300} y={200}
+          width={400} 
+          rows={20}
+          scroll={false}
         />
 
       </LCARSBasicScreen>
@@ -150,6 +184,20 @@ class TextTestPage extends Component {
   private handleMenuBackButtonClick(e: any) {
     e.preventDefault();
     history.back();
+  }
+
+  private handleAddLineButtonClick(e: any) {
+    e.preventDefault();
+
+    var messageText: string = '{"text": "Line:  ' + this.scrollingLineCount++ + '  of message text..."}';
+    
+    var addLineEvent = new CustomEvent('appendLine', {detail: messageText});
+    
+    var element = document.getElementById("testTextAreaWrap");
+    if(element) {
+      element.dispatchEvent(addLineEvent);
+    }
+    
   }
 
 }
