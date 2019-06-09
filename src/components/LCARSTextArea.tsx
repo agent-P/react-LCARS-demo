@@ -10,6 +10,7 @@ interface LCARSTextAreaProps extends LCARSComponentProps {
     fontFamily: string;
     wrap: boolean;
     scroll: boolean;
+    contentText: string[];
 }
 
 export interface LCARSTextAreaState {
@@ -27,7 +28,7 @@ class LCARSTextArea extends LCARSComponent <LCARSTextAreaProps> {
     public static defaultProps = {
         static: false,
         enabled: true,
-        label: "Text",
+        label: "",
         x: 0,
         y: 0,
         color: LCARS.EC_ORANGE,
@@ -48,7 +49,8 @@ class LCARSTextArea extends LCARSComponent <LCARSTextAreaProps> {
         rows: 1,
         fontFamily: "LCARS",
         wrap: false,
-        scroll: true
+        scroll: true,
+        contentText: []
     };
 
     rows: number;  // The number of rows to display in the text area.
@@ -82,6 +84,9 @@ class LCARSTextArea extends LCARSComponent <LCARSTextAreaProps> {
 
         if(element) {
             
+            /**
+             * Initialize the Text Area.
+             */
             for(var index = 0; index < this.rows; index++) {
                 //console.log("iterating row: " + index);
                 this.state.lineElements.push(document.createElementNS(LCARS.svgNS, "text"));
@@ -102,15 +107,21 @@ class LCARSTextArea extends LCARSComponent <LCARSTextAreaProps> {
             /**
              * Add event listeners.
              */
-            element.addEventListener("appendLine", e => this.appendLine(e));
+            element.addEventListener("appendLine", e => this.handleAppendLineEvent(e));
 
+        }
+
+        if(this.props.contentText.length > 0) {
+            for(var index = 0; index < this.props.contentText.length; index++) {
+                this.appendLine(this.props.contentText[index]);
+            }
         }
         
     }
 
 
     render() {
-         return(
+        return(
             <svg className={this.getClassName(this.props.static, this.props.enabled)}
                 id={this.props.id}
                 height={this.height} 
@@ -124,7 +135,7 @@ class LCARSTextArea extends LCARSComponent <LCARSTextAreaProps> {
                 >
                 
             </svg>
-         );
+        );
     }
 
 
@@ -154,21 +165,18 @@ class LCARSTextArea extends LCARSComponent <LCARSTextAreaProps> {
         return this.fontSize * 0.88;
     }
        
-    private appendLine(event: any) {
-
+    private handleAppendLineEvent(event: any) {
         var detail = JSON.parse(event.detail);
-        console.log("Got appendLine event: " + event.detail);
-
         var text = detail.text;
-        console.log("text from detail: " + text);
 
-        this.addLine(text);
+        this.appendLine(text);
+    }
 
+
+    private appendLine(text: string) {
         var resultString = this.wrap(text);
         var resultStringLength = resultString.length;
 
-        console.log("wrap result string: " + resultString + " - length: " + resultStringLength);
-    
         for(var index = 0; index < resultStringLength; index++) {
             this.addLine(resultString[index]);
         }
@@ -176,17 +184,14 @@ class LCARSTextArea extends LCARSComponent <LCARSTextAreaProps> {
 
     
     
-    addLine(lineOfText: string) {
-        console.log("adding line of text: " + lineOfText);
+    private addLine(lineOfText: string) {        
         for(var index = 0; index < this.rows; index++) {
             if(this.state.lineElements[index].textContent == "") {
-                console.log("found empty line: " + index);
                 this.state.lineElements[index].textContent = lineOfText;
                 break;
             }
             else {
                 if(index == this.rows-1) {
-                    console.log("No empty line found: " + index + " scrolling...");
                     this.scrollUp();
                     this.state.lineElements[this.rows-1].textContent = lineOfText;
                     break;
@@ -196,7 +201,7 @@ class LCARSTextArea extends LCARSComponent <LCARSTextAreaProps> {
     }
     
     
-    wrap(lineOfText: string) {
+    private wrap(lineOfText: string) {
         var resultStringArrays: string[][] = [];
         var resultStrings: string[] = [];
         
@@ -213,7 +218,7 @@ class LCARSTextArea extends LCARSComponent <LCARSTextAreaProps> {
             w = words[i];
             x = LCARS.getTextWidth3(w, this.fontSize) + spaceWidth;
             
-            if( x > spaceLeft ) {
+            if(x > spaceLeft) {
                 line = [];
                 resultStringArrays.push(line);
 
@@ -226,7 +231,7 @@ class LCARSTextArea extends LCARSComponent <LCARSTextAreaProps> {
             }
         }
         
-        for(i = 0; i<resultStrings.length; i++ ) {
+        for(i = 0; i<resultStringArrays.length; i++ ) {
             resultStrings[i] = resultStringArrays[i].join(' ');
             
             if(this.props.wrap == false) {
@@ -239,9 +244,8 @@ class LCARSTextArea extends LCARSComponent <LCARSTextAreaProps> {
         return resultStrings;
     }
     
-    scrollUp() {
+    private scrollUp() {
         for(var index = 0; index < this.rows-1; index++) {
-            console.log("scroll processing row: " + index);
             this.state.lineElements[index].textContent = this.state.lineElements[index+1].textContent;
         }
         

@@ -82,7 +82,7 @@ class LCARSBasicScreen<P extends LCARSBasicScreenProps> extends Component<P> {
 
     render() {
         return(
-            <svg viewBox={"0 0 " + this.width + " " + this.height}>
+            <svg width="100%" height="100%" viewBox={"0 0 " + this.width + " " + this.height}>
                 <LCARSText 
                     id={this.props.id + "_screen_title"}
                     label={this.title}

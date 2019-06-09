@@ -77,35 +77,35 @@ class TextTestPage extends Component {
           id="testTitleText"
           label="LCARS TITLE text"
           properties={ LCARS.EF_TITLE }
-          x={300} y={150}
+          x={200} y={150}
         />
 
         <LCARSText 
           id="testSubTitleText"
           label="LCARS SUBTITLE text"
           properties={ LCARS.EF_SUBTITLE }
-          x={300} y={220}
+          x={200} y={220}
         />
 
         <LCARSText 
           id="testButtonText"
           label="LCARS BUTTON text"
           properties={ LCARS.EF_BUTTON }
-          x={300} y={270}
+          x={200} y={270}
         />
 
         <LCARSText 
           id="testBodyText"
           label="LCARS BODY text - (NORMAL text)"
           properties={ LCARS.EF_BODY }
-          x={300} y={310}
+          x={200} y={310}
         />
 
         <LCARSText 
           id="testTinyText"
           label="LCARS TINY text"
           properties={ LCARS.EF_TINY }
-          x={300} y={340}
+          x={200} y={340}
         />
 
         <LCARSText 
@@ -138,13 +138,24 @@ class TextTestPage extends Component {
           id="testTextAreaWrapText"
           label="Text Area wrap test"
           properties={ LCARS.EF_SUBTITLE }
-          x={800} y={150}
+          x={650} y={150}
         />
 
         <LCARSRectangle
           id="testTextAreaWrapTextRect"
-          x={800} y={185}
-          width={400} height={2}
+          x={650} y={185}
+          width={500} height={2}
+        />
+
+        <LCARSTextArea
+          id="testTextAreaWrap"
+          x={650} y={200}
+          width={500}
+          rows={11}
+          wrap={true}
+          scroll={false}
+          contentText={["Ne malis tractatos vel. Mucius labores id mei. Per at purto sententiae appellantur. Id cibo vivendo epicuri nec. Nibh munere no mei, populo accusam vix ut, at mei epicuri dignissim. Prima laudem pri te.", 
+                      " ", "Eu mel regione luptatum adolescens, vim error graece ne, eu sea possim consectetuer. Id has copiosae praesent forensibus, bonorum qualisque sententiae nec in. Gubergren efficiantur te usu. Veniam aliquando repudiandae in nam, eu vel vituperata appellantur, eu civibus referrentur sit. Eius labores has an, per ea saperet nusquam indoctum. Est fugit forensibus ei. Appareat partiendo ut pro, at vocibus postulant pri, ea meis alienum accusamus cum."]}
         />
 
         <LCARSText 
@@ -169,11 +180,10 @@ class TextTestPage extends Component {
         />
 
         <LCARSTextArea
-          id="testTextAreaWrap"
+          id="testTextAreaScroll"
           x={1300} y={200}
           width={400} 
           rows={20}
-          scroll={false}
         />
 
       </LCARSBasicScreen>
@@ -193,7 +203,7 @@ class TextTestPage extends Component {
     
     var addLineEvent = new CustomEvent('appendLine', {detail: messageText});
     
-    var element = document.getElementById("testTextAreaWrap");
+    var element = document.getElementById("testTextAreaScroll");
     if(element) {
       element.dispatchEvent(addLineEvent);
     }
