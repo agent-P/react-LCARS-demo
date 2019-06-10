@@ -29,6 +29,7 @@ export interface LCARSComponentProps {
 export interface LCARSComponentState {
     color: any;
     visible: string;
+    enabled: boolean;
 }
 
 class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
@@ -77,7 +78,7 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
     protected iconTranslate: string;
     protected iconTransform: string;
     protected visible: string;
-    protected blikDuration: number;
+    protected blinkDuration: number;
     
 
     state: LCARSComponentState;
@@ -102,13 +103,14 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
         this.iconScale = this.props.iconScale;
         this.iconTranslate = "";
         this.iconTransform = "";
-        this.blikDuration = 100;
+        this.blinkDuration = 100;
 
         this.visible = this.props.visible;
 
         this.state = {
             color: this.color,
             visible: this.props.visible,
+            enabled: this.props.enabled
         };
 
         this.setIconPosition(this.props.iconLocation);
@@ -161,7 +163,7 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
         //console.log("visibility: " + this.state.visible);
         //console.log(this.getPosition(this.props.x, this.props.y));
         return(
-           <svg className={this.getClassName(this.props.static, this.props.enabled)}
+           <svg className={this.getClassName(this.props.static, this.state.enabled)}
                id={this.props.id}
                height={this.height+2} 
                width={this.width+2} 
@@ -591,7 +593,7 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
      * case.
      * detail: {"enabled": ["true/false"], "color": [LCARS color value as a string], duration": [""]}
      */
-    private blinking(event: any) {
+    protected blinking(event: any) {
         var detail = JSON.parse(event.detail);
 
         if(detail.enabled === "true") {
@@ -607,14 +609,14 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
      * Method to blink a visible LCARS component "off" (make invisible) for 0.1 seconds.
      * Used for things like activity indicators.
      */
-    private offBlink(event: any) {
-        if(this.blikDuration == undefined) {
-            this.blikDuration = 100;
+    offBlink(event: any) {
+        if(this.blinkDuration == undefined) {
+            this.blinkDuration = 100;
         }
         
         var thisObject = this;
         thisObject.setVisible("hidden");
-        setTimeout(function() { thisObject.setVisible("visible") }, this.blikDuration);
+        setTimeout(function() { thisObject.setVisible("visible") }, this.blinkDuration);
     }
     
     
@@ -622,14 +624,14 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
      * Method to blink an invisible LCARS component "on" (make visible) for 0.1 seconds.
      * Used for things like activity indicators.
      */
-    private onBlink(event: any) {
-        if(this.blikDuration == undefined) {
-            this.blikDuration = 100;
+    onBlink(event: any) {
+        if(this.blinkDuration == undefined) {
+            this.blinkDuration = 100;
         }
         
         var thisObject = this;
         thisObject.setVisible("visible");
-        setTimeout(function() { thisObject.setVisible("hidden") }, this.blikDuration);
+        setTimeout(function() { thisObject.setVisible("hidden") }, this.blinkDuration);
     }
     
     

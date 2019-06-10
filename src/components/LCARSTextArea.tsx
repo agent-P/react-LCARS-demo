@@ -16,6 +16,7 @@ interface LCARSTextAreaProps extends LCARSComponentProps {
 export interface LCARSTextAreaState {
     color: any;
     visible: string;
+    enabled: boolean;
     lineElements: Element[];
 }
 
@@ -72,6 +73,7 @@ class LCARSTextArea extends LCARSComponent <LCARSTextAreaProps> {
         this.state = {
             color: this.color,
             visible: this.props.visible,
+            enabled: this.props.enabled,
             lineElements: []
         };
 

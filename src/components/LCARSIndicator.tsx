@@ -45,6 +45,25 @@ class LCARSIndicator extends LCARSComponent <LCARSIndicatorProps> {
         }
 
         this.height = this.props.height;
+
+        this.onBlink = this.onBlink.bind(this);
+        this.offBlink = this.offBlink.bind(this);
+        this.warning = this.warning.bind(this);
+        this.error = this.error.bind(this);
+        
+
+    }
+
+    componentDidMount() {
+        super.componentDidMount();
+
+        var element = document.getElementById(this.props.id)
+
+        if(element) {
+            element.addEventListener("warning", e => this.warning(e));
+            element.addEventListener("error", e => this.error(e));
+        }
+        
     }
 
     render() {
@@ -60,7 +79,55 @@ class LCARSIndicator extends LCARSComponent <LCARSIndicatorProps> {
         return super.getTextAnchor(labelProperties);
     }
      
+    /**
+     * Method to blink a visible LCARS component "off" (make invisible) for 0.1 seconds.
+     * Used for things like activity indicators.
+     */
+    offBlink(event: any) {
+        if(this.blinkDuration == undefined) {
+            this.blinkDuration = 100;
+        }
+        
+        var thisObject = this;
+        thisObject.state.enabled = false;
+        thisObject.setState({enabled: false})
+        setTimeout(function() { thisObject.setState({enabled: true}); }, this.blinkDuration);
+    }
     
+    
+    /**
+     * Method to blink an invisible LCARS component "on" (make visible) for 0.1 seconds.
+     * Used for things like activity indicators.
+     */
+    onBlink(event: any) {
+        if(this.blinkDuration == undefined) {
+            this.blinkDuration = 100;
+        }
+        
+        var thisObject = this;
+        thisObject.setState({enabled: true});
+        setTimeout(function() { thisObject.setState({enabled: false}); }, this.blinkDuration);
+    }
+      
+    warning(event: any) {
+        var thisObject = this;
+        thisObject.setState({enabled: true});
+        this.setBlinking(true, LCARS.EC_YELLOW, LCARS.BLINK_DURATION_WARNING);
+    }
+    
+    error(event: any) {
+        var thisObject = this;
+        thisObject.setState({enabled: true});
+        this.setBlinking(true, LCARS.EC_RED, LCARS.BLINK_DURATION_ERROR);
+    }
+
+    protected blinking(event: any) {
+        super.blinking(event);
+        
+        var thisObject = this;
+        thisObject.state.enabled = false;
+        thisObject.setState({enabled: false})
+    }
 }
 
 export default LCARSIndicator;

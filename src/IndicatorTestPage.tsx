@@ -10,6 +10,7 @@ import LCARSRectangle from './components/LCARSRectangle';
 import LCARSBasicScreen from './components/LCARSBasicScreen';
 import LCARSIcon from './components/LCARSIcon';
 import { Redirect } from 'react-router'
+import LCARSIndicator from './components/LCARSIndicator';
 
 
 class IndicatorTestPage extends Component {
@@ -67,6 +68,57 @@ class IndicatorTestPage extends Component {
           iconLocation={LCARS.ES_LABEL_W}
         />
 
+        <LCARSIndicator
+          id="indicatorTestComponent1"
+          label="Test Indicator"
+          x={420} y={300}
+        />
+
+        <LCARSButton 
+          id="indicatortestOnBlinkButton"
+          label="On Blink"
+          properties={ LCARS.ES_RECT_RND | LCARS.ES_LABEL_C }
+          x={200}
+          y={300}
+          handleClick={this.handleOnBlink}
+        />
+
+        <LCARSButton 
+          id="indicatortestOffBlinkButton"
+          label="Off Blink"
+          properties={ LCARS.ES_RECT_RND | LCARS.ES_LABEL_C }
+          x={200}
+          y={370}
+          handleClick={this.handleOffBlink}
+        />
+
+        <LCARSButton 
+          id="warningBlinkingOnButton"
+          label="WarningBlinking"
+          properties={ LCARS.ES_RECT_RND | LCARS.ES_LABEL_C }
+          x={200}
+          y={440}
+          handleClick={this.handleWarningBlinking}
+        />
+
+        <LCARSButton 
+          id="errorBlinkingOffButton"
+          label="Error Blinking"
+          properties={ LCARS.ES_RECT_RND | LCARS.ES_LABEL_C }
+          x={200}
+          y={510}
+          handleClick={this.handleErrorBlinking}
+        />
+
+        <LCARSButton 
+          id="errorBlinkingOffButton"
+          label="Blinking Off"
+          properties={ LCARS.ES_RECT_RND | LCARS.ES_LABEL_C }
+          x={200}
+          y={580}
+          handleClick={this.handleBlinkingOff}
+        />
+
       </LCARSBasicScreen>
     );
   }
@@ -77,6 +129,53 @@ class IndicatorTestPage extends Component {
     history.back();
   }
 
+
+  private handleOnBlink(e: any) {
+    var testEvent = new CustomEvent('onBlink');
+    
+    var element = document.getElementById("indicatorTestComponent1");
+    if(element) {
+      element.dispatchEvent(testEvent);
+    }    
+  }
+
+  private handleOffBlink(e: any) {
+    var testEvent = new CustomEvent('offBlink');
+    
+    var element = document.getElementById("indicatorTestComponent1");
+    if(element) {
+      element.dispatchEvent(testEvent);
+    }    
+  }
+
+  private handleBlinkingOff(e: any) {
+    var testEvent = new CustomEvent('blinking', {detail: '{"enabled": "false"}'});
+    
+    var element = document.getElementById("indicatorTestComponent1");
+    if(element) {
+      element.dispatchEvent(testEvent);
+    }    
+  }
+
+  private handleWarningBlinking(e: any) {
+    var testEvent = new CustomEvent('warning');
+    
+    var element = document.getElementById("indicatorTestComponent1");
+    if(element) {
+      element.dispatchEvent(testEvent);
+    }    
+  }
+
+  private handleErrorBlinking(e: any) {
+    var testEvent = new CustomEvent('error');
+    
+    var element = document.getElementById("indicatorTestComponent1");
+    if(element) {
+      element.dispatchEvent(testEvent);
+    }    
+  }
+
+ 
 }
 
 export default IndicatorTestPage;
