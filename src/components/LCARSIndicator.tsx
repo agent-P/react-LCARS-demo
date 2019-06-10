@@ -99,7 +99,7 @@ class LCARSIndicator extends LCARSComponent <LCARSIndicatorProps> {
      * Method to blink an invisible LCARS component "on" (make visible) for 0.1 seconds.
      * Used for things like activity indicators.
      */
-    onBlink(event: any) {
+    protected onBlink(event: any) {
         if(this.blinkDuration == undefined) {
             this.blinkDuration = 100;
         }
@@ -109,13 +109,13 @@ class LCARSIndicator extends LCARSComponent <LCARSIndicatorProps> {
         setTimeout(function() { thisObject.setState({enabled: false}); }, this.blinkDuration);
     }
       
-    warning(event: any) {
+    protected warning(event: any) {
         var thisObject = this;
         thisObject.setState({enabled: true});
         this.setBlinking(true, LCARS.EC_YELLOW, LCARS.BLINK_DURATION_WARNING);
     }
     
-    error(event: any) {
+    protected error(event: any) {
         var thisObject = this;
         thisObject.setState({enabled: true});
         this.setBlinking(true, LCARS.EC_RED, LCARS.BLINK_DURATION_ERROR);
@@ -123,7 +123,7 @@ class LCARSIndicator extends LCARSComponent <LCARSIndicatorProps> {
 
     protected blinking(event: any) {
         super.blinking(event);
-        
+
         var thisObject = this;
         thisObject.state.enabled = false;
         thisObject.setState({enabled: false})

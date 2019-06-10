@@ -87,8 +87,8 @@ class ButtonsTestPage extends Component {
           //static={true}
           //enabled={false}
           label={this.state.label}
-          x={375}
-          y={150}
+          x={420}
+          y={300}
           properties={ LCARS.ES_RECT_RND | LCARS.ES_LABEL_NE }
           auxLabel={"AUX"}
           auxLabelProperties={LCARS.EC_BLUE | LCARS.EF_BODY}
@@ -101,8 +101,8 @@ class ButtonsTestPage extends Component {
         <LCARSButton 
           id="blinkingOnButton"
           label="Blinking On"
-          x={this.LEFT}
-          y={210}
+          x={200}
+          y={300}
           handleClick={this.handleBlinkingOn}
           visible={this.state.visible}
         />
@@ -110,8 +110,8 @@ class ButtonsTestPage extends Component {
         <LCARSButton 
           id="blinkingOffButton"
           label="Blinking Off"
-          x={this.LEFT}
-          y={274}
+          x={200}
+          y={370}
           handleClick={this.handleBlinkingOff}
           visible={this.state.visible}
         />
@@ -119,8 +119,8 @@ class ButtonsTestPage extends Component {
         <LCARSButton 
           id="onBlinkButton"
           label="On Blink"
-          x={this.LEFT}
-          y={338}
+          x={200}
+          y={440}
           handleClick={this.handleOnBlink}
           visible={this.state.visible}
         />
@@ -128,8 +128,8 @@ class ButtonsTestPage extends Component {
         <LCARSButton 
           id="offBlinkButton"
           label="Off Blink"
-          x={this.LEFT}
-          y={402}
+          x={200}
+          y={510}
           handleClick={this.handleOffBlink}
           visible={this.state.visible}
         />
@@ -137,8 +137,8 @@ class ButtonsTestPage extends Component {
         <LCARSButton 
           id="fadeOutButton"
           label="Fade Out"
-          x={this.LEFT}
-          y={466}
+          x={200}
+          y={580}
           handleClick={this.handleFadeOut}
           visible={this.state.visible}
         />
@@ -146,10 +146,66 @@ class ButtonsTestPage extends Component {
         <LCARSButton 
           id="fadeInButton"
           label="Fade In"
-          x={this.LEFT}
-          y={530}
+          x={200}
+          y={650}
           handleClick={this.handleFadeIn}
           visible={this.state.visible}
+        />
+
+        <LCARSButton 
+          id="testButtonDisabledRound"
+          label="Disabled Button"
+          x={620}
+          y={300}
+          properties={LCARS.ES_RECT_RND | LCARS.ES_LABEL_C}
+          enabled={false}
+        />
+
+        <LCARSButton 
+          id="testButtonDisabled"
+          label="Disabled Button"
+          x={620}
+          y={370}
+          enabled={false}
+        />
+
+        <LCARSButton 
+          id="testButtonDisabledStatic"
+          label="Static Button"
+          x={620}
+          y={440}
+          static={true}
+        />
+
+        <LCARSButton 
+          id="testButton1"
+          label="Button Size 1"
+          x={820}
+          y={200}
+        />
+
+        <LCARSButton 
+          id="testButton2"
+          label="Button Size 2"
+          x={820 + 1*LCARS.LCARS_BTN_WIDTH + 1*LCARS.LCARS_BTN_SPACING}
+          y={200}
+          height={2}
+        />
+
+        <LCARSButton 
+          id="testButton3"
+          label="Button Size 3"
+          x={820 + 2*LCARS.LCARS_BTN_WIDTH + 2*LCARS.LCARS_BTN_SPACING}
+          y={200}
+          height={3}
+        />
+
+        <LCARSButton 
+          id="testButton4"
+          label="Button Size 4"
+          x={820 + 3*LCARS.LCARS_BTN_WIDTH + 3*LCARS.LCARS_BTN_SPACING}
+          y={200}
+          height={4}
         />
 
       </LCARSBasicScreen>

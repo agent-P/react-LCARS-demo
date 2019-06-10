@@ -624,7 +624,7 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
      * Method to blink an invisible LCARS component "on" (make visible) for 0.1 seconds.
      * Used for things like activity indicators.
      */
-    onBlink(event: any) {
+    protected onBlink(event: any) {
         if(this.blinkDuration == undefined) {
             this.blinkDuration = 100;
         }
