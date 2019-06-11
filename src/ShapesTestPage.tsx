@@ -10,6 +10,7 @@ import LCARSRectangle from './components/LCARSRectangle';
 import LCARSBasicScreen from './components/LCARSBasicScreen';
 import LCARSIcon from './components/LCARSIcon';
 import { Redirect } from 'react-router'
+import LCARSShape from './components/LCARSShape';
 
 
 class ShapesTestPage extends Component {
@@ -335,6 +336,46 @@ class ShapesTestPage extends Component {
           properties={LCARS.ES_LABEL_SE | LCARS.EF_BODY | LCARS.ES_RECT_RND}
           x={300 + 2*LCARS.LCARS_BTN_WIDTH + 2*LCARS.LCARS_BTN_SPACING}
           y={800 + 3*LCARS.LCARS_BTN_HEIGHT + 3*LCARS.LCARS_SPACE}
+        />
+
+        <LCARSText 
+          id="labelShapesDescriptionText"
+          label="Arbitrary Shape Components"
+          properties={ LCARS.EF_SUBTITLE }
+          x={900} y={850}
+        />
+
+        <LCARSShape
+          id="testHeartShape"
+          label="Heart"
+          width={130} height={107}
+          scale="0.5"
+          properties={LCARS.ES_LABEL_C}
+          path="M213.1,6.7c-32.4-14.4-73.7,0-88.1,30.6C110.6,4.9,67.5-9.5,36.9,6.7C2.8,22.9-13.4,62.4,13.5,110.9
+          C33.3,145.1,67.5,170.3,125,217c59.3-46.7,93.5-71.9,111.5-106.1C263.4,64.2,247.2,22.9,213.1,6.7z"
+          x={900} y={900}
+        />
+
+        <LCARSShape
+          id="testHeartDisabledShape"
+          label="Heart Disabled"
+          width={130} height={107}
+          scale="0.5"
+          properties={LCARS.ES_LABEL_C | LCARS.EF_BODY}
+          path="M213.1,6.7c-32.4-14.4-73.7,0-88.1,30.6C110.6,4.9,67.5-9.5,36.9,6.7C2.8,22.9-13.4,62.4,13.5,110.9
+          C33.3,145.1,67.5,170.3,125,217c59.3-46.7,93.5-71.9,111.5-106.1C263.4,64.2,247.2,22.9,213.1,6.7z"
+          x={1050} y={900}
+          enabled={false}
+        />
+
+<LCARSShape
+          id="testShape"
+          label="Cross"
+          width={120} height={107}
+          scale="23.0"
+          properties={LCARS.ES_LABEL_C}
+          path="M2 1 h1 v1 h1 v1 h-1 v1 h-1 v-1 h-1 v-1 h1 z"
+          x={1200} y={900}
         />
 
       </LCARSBasicScreen>

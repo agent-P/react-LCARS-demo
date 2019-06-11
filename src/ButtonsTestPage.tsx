@@ -170,7 +170,7 @@ class ButtonsTestPage extends Component {
         />
 
         <LCARSButton 
-          id="testButtonDisabledStatic"
+          id="testButtonStatic"
           label="Static Button"
           x={620}
           y={440}
