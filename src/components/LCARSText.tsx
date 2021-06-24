@@ -4,7 +4,7 @@ import LCARSComponent, { LCARSComponentState } from './LCARSComponent';
 import { LCARSComponentProps } from './LCARSComponent'
 import './LCARSComponent.css'
 
-interface LCARSTextProps extends LCARSComponentProps {
+export interface LCARSTextProps extends LCARSComponentProps {
 }
 
 
@@ -34,6 +34,7 @@ class LCARSText extends LCARSComponent <LCARSTextProps> {
         iconLocation: LCARS.ES_LABEL_C,
         iconScale: "1.5",
         visible: "visible",
+        fontSizeOverride: 1.0
     };
 
 
@@ -57,6 +58,17 @@ class LCARSText extends LCARSComponent <LCARSTextProps> {
         // console.log("text height: " + this.props.height);
         
 
+    }
+
+    componentDidUpdate() {
+        /*
+         * Recalculate the width to prevent clipping if changed text is wider
+         * than the previous label string.
+         */
+        console.log("text updated: " + this.props.label);
+        console.log(this.width);
+        this.width = LCARS.getTextWidth3(this.props.label, this.fontSize);
+        console.log(this.width);
     }
 
     render() {

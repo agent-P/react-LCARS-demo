@@ -18,6 +18,7 @@ export interface LCARSTextAreaState {
     visible: string;
     enabled: boolean;
     lineElements: Element[];
+    width: number;
 }
 
 
@@ -51,7 +52,8 @@ class LCARSTextArea extends LCARSComponent <LCARSTextAreaProps> {
         fontFamily: "LCARS",
         wrap: false,
         scroll: true,
-        contentText: []
+        contentText: [],
+        fontSizeOverride: 1.0
     };
 
     rows: number;  // The number of rows to display in the text area.
@@ -74,7 +76,8 @@ class LCARSTextArea extends LCARSComponent <LCARSTextAreaProps> {
             color: this.color,
             visible: this.props.visible,
             enabled: this.props.enabled,
-            lineElements: []
+            lineElements: [],
+            width: this.props.width
         };
 
 

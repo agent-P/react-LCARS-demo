@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import LCARSButton from './components/LCARSButton';
-import LCARSCorner from './components/LCARSCorner';
-import LCARS from './components/LCARS';
-import ICONS from './resources/ICONS';
-import LCARSText from './components/LCARSText';
-import LCARSRectangle from './components/LCARSRectangle';
-import LCARSBasicScreen from './components/LCARSBasicScreen';
-import LCARSIcon from './components/LCARSIcon';
+import '../App.css';
+import LCARSButton from '../components/LCARSButton';
+import LCARS from '../components/LCARS';
+import ICONS from '../resources/ICONS';
+import LCARSBasicScreen from '../components/LCARSBasicScreen';
 import { Redirect } from 'react-router'
+import LCARSKeypad from '../components/LCARSKeypad';
 
 
 class ButtonsTestPage extends Component {
@@ -95,7 +91,7 @@ class ButtonsTestPage extends Component {
           handleClick={this.handleClick}
           icon={ICONS.POWER_BUTTON_SVG}
           iconLocation={LCARS.ES_LABEL_W}
-          visible={this.state.visible}
+          visible={"invisible"}
         />
 
         <LCARSButton 
@@ -206,6 +202,17 @@ class ButtonsTestPage extends Component {
           x={820 + 3*LCARS.LCARS_BTN_WIDTH + 3*LCARS.LCARS_BTN_SPACING}
           y={200}
           height={4}
+        />
+
+        <LCARSKeypad
+          id="testKeypad"
+          title="Keypad"
+          subTitle="test"
+          width={this.width}
+          height={this.height}
+          x={820}
+          y={600}
+          scale="100%"
         />
 
       </LCARSBasicScreen>

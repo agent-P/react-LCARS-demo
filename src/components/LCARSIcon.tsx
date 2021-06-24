@@ -34,6 +34,7 @@ class LCARSIcon extends LCARSComponent <LCARSIconProps> {
         iconLocation: LCARS.ES_LABEL_C,
         iconScale: "1.0",
         visible: "visible",
+        fontSizeOverride: 1.0
     };
 
     constructor(props: LCARSIconProps) {
@@ -44,7 +45,35 @@ class LCARSIcon extends LCARSComponent <LCARSIconProps> {
         if((this.properties & LCARS.ES_FONT) == LCARS.EF_NORMAL) {
             this.fontSize = LCARS.FONT_BUTTON_SIZE; // the default font for corner components
         }
+
+        this.warning = this.warning.bind(this);
+        this.error = this.error.bind(this);
     }
+
+    componentDidMount() {
+        super.componentDidMount();
+
+        var element = document.getElementById(this.props.id)
+
+        if(element) {
+            element.addEventListener("warning", e => this.warning(e));
+            element.addEventListener("error", e => this.error(e));
+        }
+        
+    }
+
+    protected warning(event: any) {
+        var thisObject = this;
+        thisObject.setState({enabled: true});
+        this.setBlinking(true, LCARS.EC_YELLOW, LCARS.BLINK_DURATION_WARNING);
+    }
+    
+    protected error(event: any) {
+        var thisObject = this;
+        thisObject.setState({enabled: true});
+        this.setBlinking(true, LCARS.EC_RED, LCARS.BLINK_DURATION_ERROR);
+    }
+
 
     render() {
          return(super.render());

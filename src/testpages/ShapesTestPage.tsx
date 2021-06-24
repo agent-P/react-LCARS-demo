@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import LCARSButton from './components/LCARSButton';
-import LCARSCorner from './components/LCARSCorner';
-import LCARS from './components/LCARS';
-import ICONS from './resources/ICONS';
-import LCARSText from './components/LCARSText';
-import LCARSRectangle from './components/LCARSRectangle';
-import LCARSBasicScreen from './components/LCARSBasicScreen';
-import LCARSIcon from './components/LCARSIcon';
+import '../App.css';
+import LCARSButton from '../components/LCARSButton';
+import LCARSCorner from '../components/LCARSCorner';
+import LCARS from '../components/LCARS';
+import ICONS from '../resources/ICONS';
+import LCARSText from '../components/LCARSText';
+import LCARSRectangle from '../components/LCARSRectangle';
+import LCARSBasicScreen from '../components/LCARSBasicScreen';
 import { Redirect } from 'react-router'
-import LCARSShape from './components/LCARSShape';
+import LCARSShape from '../components/LCARSShape';
 
 
 class ShapesTestPage extends Component {

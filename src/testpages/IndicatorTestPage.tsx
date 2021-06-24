@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import LCARSButton from './components/LCARSButton';
-import LCARSCorner from './components/LCARSCorner';
-import LCARS from './components/LCARS';
-import ICONS from './resources/ICONS';
-import LCARSText from './components/LCARSText';
-import LCARSRectangle from './components/LCARSRectangle';
-import LCARSBasicScreen from './components/LCARSBasicScreen';
-import LCARSIcon from './components/LCARSIcon';
+import '../App.css';
+import LCARSButton from '../components/LCARSButton';
+import LCARS from '../components/LCARS';
+import ICONS from '../resources/ICONS';
+import LCARSBasicScreen from '../components/LCARSBasicScreen';
+import LCARSIcon from '../components/LCARSIcon';
 import { Redirect } from 'react-router'
-import LCARSIndicator from './components/LCARSIndicator';
+import LCARSIndicator from '../components/LCARSIndicator';
 
 
 class IndicatorTestPage extends Component {
@@ -70,8 +66,14 @@ class IndicatorTestPage extends Component {
 
         <LCARSIndicator
           id="indicatorTestComponent1"
-          label="Test Indicator"
+          label="Indicator"
           x={420} y={300}
+        />
+
+        <LCARSIcon
+          id="indicatorIcon"
+          icon={ICONS.NETWORK_CONNECTION_NEGATIVE}
+          x={420} y={400}
         />
 
         <LCARSButton 
@@ -137,12 +139,20 @@ class IndicatorTestPage extends Component {
     if(element) {
       element.dispatchEvent(testEvent);
     }    
+    var element = document.getElementById("indicatorIcon");
+    if(element) {
+      element.dispatchEvent(testEvent);
+    }    
   }
 
   private handleOffBlink(e: any) {
     var testEvent = new CustomEvent('offBlink');
     
     var element = document.getElementById("indicatorTestComponent1");
+    if(element) {
+      element.dispatchEvent(testEvent);
+    }    
+    var element = document.getElementById("indicatorIcon");
     if(element) {
       element.dispatchEvent(testEvent);
     }    
@@ -155,12 +165,20 @@ class IndicatorTestPage extends Component {
     if(element) {
       element.dispatchEvent(testEvent);
     }    
+    var element = document.getElementById("indicatorIcon");
+    if(element) {
+      element.dispatchEvent(testEvent);
+    }    
   }
 
   private handleWarningBlinking(e: any) {
     var testEvent = new CustomEvent('warning');
     
     var element = document.getElementById("indicatorTestComponent1");
+    if(element) {
+      element.dispatchEvent(testEvent);
+    }
+    var element = document.getElementById("indicatorIcon");
     if(element) {
       element.dispatchEvent(testEvent);
     }    
@@ -170,6 +188,10 @@ class IndicatorTestPage extends Component {
     var testEvent = new CustomEvent('error');
     
     var element = document.getElementById("indicatorTestComponent1");
+    if(element) {
+      element.dispatchEvent(testEvent);
+    }    
+    var element = document.getElementById("indicatorIcon");
     if(element) {
       element.dispatchEvent(testEvent);
     }    

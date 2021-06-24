@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import LCARSButton from './components/LCARSButton';
-import LCARSCorner from './components/LCARSCorner';
 import LCARS from './components/LCARS';
-import ICONS from './resources/ICONS';
-import LCARSText from './components/LCARSText';
 import LCARSRectangle from './components/LCARSRectangle';
 import LCARSMenuScreen from './components/LCARSMenuScreen';
-import LCARSIcon from './components/LCARSIcon';
 import { Redirect } from 'react-router'
 
 
@@ -38,6 +33,10 @@ class App extends Component {
     this.handleMenuItemFour = this.handleMenuItemFour.bind(this);
     this.handleMenuItemFive = this.handleMenuItemFive.bind(this);
     this.handleMenuItemSix = this.handleMenuItemSix.bind(this);
+    this.handleMenuItemSeven = this.handleMenuItemSeven.bind(this);
+    this.handleMenuItemEight = this.handleMenuItemEight.bind(this);
+    this.handleMenuItemNine = this.handleMenuItemNine.bind(this);
+    this.handleMenuItemTen = this.handleMenuItemTen.bind(this);
   }
  
   render() {
@@ -104,13 +103,45 @@ class App extends Component {
           handleClick={this.handleMenuItemSix}
         />
 
+        <LCARSButton 
+          id="menuItemSevenButton"
+          label="Clock Test"
+          x={this.LEFT}
+          y={this.TOP + LCARS.LCARS_CORNER_HEIGHT + 6*LCARS.LCARS_BTN_HEIGHT + 7*LCARS.LCARS_SPACE}
+          handleClick={this.handleMenuItemSeven}
+        />
+
+        <LCARSButton 
+          id="menuItemEightButton"
+          label="Digital Clock Test"
+          x={this.LEFT}
+          y={this.TOP + LCARS.LCARS_CORNER_HEIGHT + 7*LCARS.LCARS_BTN_HEIGHT + 8*LCARS.LCARS_SPACE}
+          handleClick={this.handleMenuItemEight}
+        />
+
+        <LCARSButton 
+          id="menuItemNineButton"
+          label="Analog Clock Test"
+          x={this.LEFT}
+          y={this.TOP + LCARS.LCARS_CORNER_HEIGHT + 8*LCARS.LCARS_BTN_HEIGHT + 9*LCARS.LCARS_SPACE}
+          handleClick={this.handleMenuItemNine}
+        />
+
+        <LCARSButton 
+          id="menuItemTenButton"
+          label="Calendar Test"
+          x={this.LEFT}
+          y={this.TOP + LCARS.LCARS_CORNER_HEIGHT + 9*LCARS.LCARS_BTN_HEIGHT + 10*LCARS.LCARS_SPACE}
+          handleClick={this.handleMenuItemTen}
+        />
+
         <LCARSRectangle
           id="appMenuSpacer"
           label=""
           properties={LCARS.ES_LABEL_NE}
           x={this.LEFT}
-          y={this.TOP + LCARS.LCARS_CORNER_HEIGHT + 6*LCARS.LCARS_BTN_HEIGHT + 7*LCARS.LCARS_SPACE}
-          height={1200 - (this.TOP + 2*LCARS.LCARS_CORNER_HEIGHT + 6*LCARS.LCARS_BTN_HEIGHT + 8*LCARS.LCARS_SPACE + this.BOTTOM)}
+          y={this.TOP + LCARS.LCARS_CORNER_HEIGHT + 10*LCARS.LCARS_BTN_HEIGHT + 11*LCARS.LCARS_SPACE}
+          height={1200 - (this.TOP + 2*LCARS.LCARS_CORNER_HEIGHT + 10*LCARS.LCARS_BTN_HEIGHT + 12*LCARS.LCARS_SPACE + this.BOTTOM)}
         />
 
       </LCARSMenuScreen>
@@ -146,6 +177,26 @@ class App extends Component {
   private handleMenuItemSix(e: any) {
     e.preventDefault();
     this.setState({ navigate: true, path: "/indicatortestpage" });
+  }
+
+  private handleMenuItemSeven(e: any) {
+    e.preventDefault();
+    this.setState({ navigate: true, path: "/clocktestpage" });
+  }
+
+  private handleMenuItemEight(e: any) {
+    e.preventDefault();
+    this.setState({ navigate: true, path: "/digitalclocktestpage" });
+  }
+
+  private handleMenuItemNine(e: any) {
+    e.preventDefault();
+    this.setState({ navigate: true, path: "/analogclocktestpage" });
+  }
+
+  private handleMenuItemTen(e: any) {
+    e.preventDefault();
+    this.setState({ navigate: true, path: "/calendartestpage" });
   }
 }
 

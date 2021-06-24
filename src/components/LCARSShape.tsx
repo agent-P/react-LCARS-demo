@@ -35,7 +35,8 @@ class LCARSShape extends LCARSComponent <LCARSShapeProps> {
         iconLocation: LCARS.ES_LABEL_C,
         iconScale: "1.0",
         visible: "visible",
-        path: ""
+        path: "",
+        fontSizeOverride: 1.0
     };
 
     constructor(props: LCARSShapeProps) {

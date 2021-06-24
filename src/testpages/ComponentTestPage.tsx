@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import './App.css';
-import LCARSButton from './components/LCARSButton';
-import LCARSCorner from './components/LCARSCorner';
-import LCARS from './components/LCARS';
-import ICONS from './resources/ICONS';
-import LCARSText from './components/LCARSText';
-import LCARSRectangle from './components/LCARSRectangle';
-import LCARSScreen from './components/LCARSScreen';
-import LCARSIcon from './components/LCARSIcon';
-import LCARSIndicator from './components/LCARSIndicator';
+import '../App.css';
+import LCARSButton from '../components/LCARSButton';
+import LCARSCorner from '../components/LCARSCorner';
+import LCARS from '../components/LCARS';
+import ICONS from '../resources/ICONS';
+import LCARSText from '../components/LCARSText';
+import LCARSRectangle from '../components/LCARSRectangle';
+import LCARSScreen from '../components/LCARSScreen';
+import LCARSIcon from '../components/LCARSIcon';
+import LCARSIndicator from '../components/LCARSIndicator';
 
 interface IState {
   label: string;

@@ -34,6 +34,7 @@ class LCARSCorner extends LCARSComponent <LCARSCornerProps> {
         iconLocation: LCARS.ES_LABEL_C,
         iconScale: "1.0",
         visible: "visible",
+        fontSizeOverride: 1.0
     };
 
     protected shape: number;

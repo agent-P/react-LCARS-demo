@@ -3,14 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 import App from './App';
-import ComponentTestPage from './ComponentTestPage'
-import IconTestPage from './IconTestPage'
-import ColorPaletteTestPage from './ColorPaletteTestPage'
-import ShapesTestPage from './ShapesTestPage'
-import ButtonsTestPage from './ButtonsTestPage'
-import TextTestPage from './TextTestPage'
-import IndicatorTestPage from './IndicatorTestPage'
+import ComponentTestPage from './testpages/ComponentTestPage'
+import IconTestPage from './testpages/IconTestPage'
+import ColorPaletteTestPage from './testpages/ColorPaletteTestPage'
+import ShapesTestPage from './testpages/ShapesTestPage'
+import ButtonsTestPage from './testpages/ButtonsTestPage'
+import TextTestPage from './testpages/TextTestPage'
+import IndicatorTestPage from './testpages/IndicatorTestPage'
 import * as serviceWorker from './serviceWorker';
+import ClockTestPage from './testpages/ClockTestPage';
+import DigitalClockTestPage from './testpages/DigitalClockTestPage';
+import CalendarTestPage from './testpages/CalendarTestPage';
+import AnalogClockTestPage from './testpages/AnalogClockTestPage';
 
 const routing = (
     <Router>
@@ -23,6 +27,10 @@ const routing = (
         <Route exact path="/buttonstestpage" component={ButtonsTestPage} />
         <Route exact path="/texttestpage" component={TextTestPage} />
         <Route exact path="/indicatortestpage" component={IndicatorTestPage} />
+        <Route exact path="/clocktestpage" component={ClockTestPage} />
+        <Route exact path="/digitalclocktestpage" component={DigitalClockTestPage} />
+        <Route exact path="/analogclocktestpage" component={AnalogClockTestPage} />
+        <Route exact path="/calendartestpage" component={CalendarTestPage} />
         </div>
     </Router>
 )

@@ -24,6 +24,7 @@ export interface LCARSComponentProps {
     iconLocation: number;
     iconScale: string;
     visible: string;
+    fontSizeOverride: number;
 }
 
 export interface LCARSComponentState {
@@ -53,6 +54,7 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
         iconLocation: LCARS.ES_LABEL_C,
         iconScale: "1.5",
         visible: "visible",
+        fontSizeOverride: 1.0
     };
 
     protected height: number;
@@ -86,7 +88,7 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
 
     constructor(props: P) {
         super(props);
-    
+
         this.height = this.props.height;
         this.width = this.props.width;
         this.scale = this.props.scale;
@@ -96,7 +98,7 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
         this.downColor = this.getDownColor(null);
         this.textColor = this.getTextColor();
         this.textAnchor = this.getTextAnchor(this.props.properties);
-        this.fontSize = LCARS.getLCARSFontSize(this.props.properties);
+        this.fontSize = LCARS.getLCARSFontSize(this.props.properties)*this.props.fontSizeOverride;
         this.animateElementFadeIn = null;
         this.animateElementFadeOut = null;
         this.duration = "";
@@ -190,9 +192,10 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
                     className="svgText"
                     x={this.getTextX()} 
                     y={this.getTextY()} 
-                    fill={this.textColor}
+                    fill={this.getShape() === "" ? this.getColor() : this.getTextColor()}
                     textAnchor={this.textAnchor}
                     fontSize={this.fontSize}
+                    transform={" scale(" + this.scale + ") "}
                 >
                    {this.props.label}
                 </text>
@@ -520,6 +523,7 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
     setBlinking(enabled: boolean, color: any, duration: any) {
         const shapeElement: HTMLElement | null = document.getElementById(this.props.id + LCARS.SHAPE_SUFFIX);
         const textElement: HTMLElement | null = document.getElementById(this.props.id + LCARS.TEXT_SUFFIX);
+        const iconElement: HTMLElement | null = document.getElementById(this.props.id + LCARS.ICON_SUFFIX);
 
         //console.log(color);
         //console.log(duration);
@@ -657,8 +661,8 @@ class LCARSComponent<P extends LCARSComponentProps> extends Component<P> {
         console.log("detail.color: " + detail.color);
         console.log("detail.duration: " + detail.duration);
 
-        const shapeElement: HTMLElement | null = document.getElementById(this.props.id + LCARS.SHAPE_SUFFIX);
-        const textElement: HTMLElement | null = document.getElementById(this.props.id + LCARS.TEXT_SUFFIX);
+        //const shapeElement: HTMLElement | null = document.getElementById(this.props.id + LCARS.SHAPE_SUFFIX);
+        //const textElement: HTMLElement | null = document.getElementById(this.props.id + LCARS.TEXT_SUFFIX);
         const element: HTMLElement | null = document.getElementById(this.props.id);
 
         //console.log(color);

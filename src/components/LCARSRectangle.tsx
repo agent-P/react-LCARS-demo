@@ -34,6 +34,7 @@ class LCARSRectangle extends LCARSComponent <LCARSRectangleProps> {
         iconLocation: LCARS.ES_LABEL_C,
         iconScale: "1.5",
         visible: "visible",
+        fontSizeOverride: 1.0
     };
 
 
