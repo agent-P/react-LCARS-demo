@@ -8,6 +8,7 @@ import LCARSText from './LCARSText';
 interface LCARSClockProps extends LCARSComponentProps {
     format: string;
     interval: number;
+    alignment?: string;
 }
 
 export interface LCARSClockState extends LCARSComponentState{
@@ -16,6 +17,7 @@ export interface LCARSClockState extends LCARSComponentState{
     visible: string;
     enabled: boolean;
     timeoutVariable: number | null;
+    x: number;
 }
 
 
@@ -47,7 +49,8 @@ class LCARSClock extends LCARSComponent <LCARSClockProps> {
         visible: "visible",
         interval: 1000,
         format: "hh:mm:ss",
-        fontSizeOverride: 1.0
+        fontSizeOverride: 1.0,
+        alignment: 'left'
     };
 
     public state: LCARSClockState;
@@ -58,12 +61,16 @@ class LCARSClock extends LCARSComponent <LCARSClockProps> {
 
         this.properties = this.props.properties;
 
+        let label = this.formatString(this.props.format, new Date());
+        let x = this.calculateX(this.props.x, label);
+
         this.state = {
-            label: this.formatString(this.props.format, new Date()),
+            label: label,
             color: this.props.color,
             visible: this.props.visible,
             enabled: this.props.enabled,
             timeoutVariable: null,
+            x: x
         };
 
         console.log(this.state.label);
@@ -78,6 +85,7 @@ class LCARSClock extends LCARSComponent <LCARSClockProps> {
         this.start = this.start.bind(this);
         this.stop = this.stop.bind(this);
         this.update = this.update.bind(this);
+        this.calculateX = this.calculateX.bind(this);
     }
 
     componentDidMount() {
@@ -116,7 +124,7 @@ class LCARSClock extends LCARSComponent <LCARSClockProps> {
              <LCARSText
                 id="clock"
                 label={this.state.label}
-                x={this.props.x}
+                x={this.state.x}
                 y={this.props.y}
                 properties={this.props.properties}
                 fontSizeOverride={this.props.fontSizeOverride}
@@ -172,10 +180,13 @@ class LCARSClock extends LCARSComponent <LCARSClockProps> {
         
         /** Initialize the format for the updated time date string. */
         var clockString = this.props.format;
+
+        let label = this.formatString(clockString, now);
+        let x = this.calculateX(this.props.x, label);
         
         /** Format the updated current time date, and set the text field. */
         this.setState({
-            label: this.formatString(clockString, now)
+            label: label
         })
         //this.setText(this.formatString(clockString, now));
         
@@ -207,6 +218,20 @@ class LCARSClock extends LCARSComponent <LCARSClockProps> {
         }
         
         return number;
+    }
+
+
+    calculateX(x: number, label: string) {
+        let width = LCARS.getTextWidth3(label, this.fontSize);
+        let _x = x;  // left alignment is the default
+
+        if(this.props.alignment === 'center') {
+            _x = x - width/2;
+        } else if(this.props.alignment === 'right') {
+            _x = x - width;
+        }
+
+        return _x;
     }
     
     
@@ -253,7 +278,7 @@ class LCARSClock extends LCARSComponent <LCARSClockProps> {
      * @param now the Date object to format
      * @return the formatted date string
      */
-    formatString(formatString: string, now: Date) {
+    public formatString(formatString: string, now: Date) {
         
         /** Get all the time and date paramenters for the <code>now</code> argument. */
         var year = now.getFullYear();

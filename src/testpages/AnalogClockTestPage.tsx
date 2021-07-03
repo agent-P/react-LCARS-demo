@@ -5,6 +5,7 @@ import LCARS from '../components/LCARS';
 import ICONS from '../resources/ICONS';
 import LCARSBasicScreen from '../components/LCARSBasicScreen';
 import { Redirect } from 'react-router'
+import LCARSAnalogClock from '../components/LCARSAnalogClock';
 
 
 class AnalogClockTestPage extends Component {
@@ -62,6 +63,25 @@ class AnalogClockTestPage extends Component {
           iconLocation={LCARS.ES_LABEL_W}
         />
 
+        <LCARSAnalogClock
+          id='analogClock'
+          x={1920/4}
+          y={1200/4}
+          width={1920/4}
+          height={1200/4}
+          scale={'75%'}
+          handsColor={LCARS.EC_YELLOW}
+          faceNumbersColor={LCARS.EC_RED}
+        />
+
+      <LCARSAnalogClock
+          id='analogClock'
+          x={this.width - 300}
+          y={100}
+          width={1920/4}
+          height={1200/4}
+          scale={'25%'}
+        />
 
       </LCARSBasicScreen>
     );

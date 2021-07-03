@@ -57,6 +57,8 @@ class LCARSText extends LCARSComponent <LCARSTextProps> {
         // console.log("text width: " + this.props.width);
         // console.log("text height: " + this.props.height);
         
+        this.getText = this.getText.bind(this);
+        this.getProperties = this.getProperties.bind(this);
 
     }
 
@@ -65,10 +67,10 @@ class LCARSText extends LCARSComponent <LCARSTextProps> {
          * Recalculate the width to prevent clipping if changed text is wider
          * than the previous label string.
          */
-        console.log("text updated: " + this.props.label);
-        console.log(this.width);
+        //console.log("text updated: " + this.props.label);
+        //console.log(this.width);
         this.width = LCARS.getTextWidth3(this.props.label, this.fontSize);
-        console.log(this.width);
+        //console.log(this.width);
     }
 
     render() {
@@ -101,8 +103,14 @@ class LCARSText extends LCARSComponent <LCARSTextProps> {
          */
         return this.fontSize * 0.88;
     }
-       
+
+    getText() {
+        return this.props.label;
+    }
  
+    getProperties() {
+        return this.properties;
+    }
 }
 
 export default LCARSText;

@@ -65,7 +65,6 @@ class CalendarTestPage extends Component {
 
         <LCARSCalendar 
             x={this.width/4} y={this.height/4}
-            width={this.width/2} height={this.height/2}
             scale="100%"
         />
 

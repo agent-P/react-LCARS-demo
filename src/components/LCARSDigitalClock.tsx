@@ -54,11 +54,12 @@ class LCARSDigitalClock<P extends LCARSDigitalClockProps> extends Component<P> {
                 />
                 <LCARSClock
                     id="clock4"
-                    x={75}
+                    x={275}
                     y={250}
                     properties={LCARS.EF_TITLE}
-                    fontSizeOverride={1.0}
+                    fontSizeOverride={0.9}
                     format="dddd - d MMM yyyy"
+                    alignment='center'
                 />
                 {this.props.children}
             </svg>

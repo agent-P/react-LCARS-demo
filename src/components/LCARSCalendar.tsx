@@ -4,8 +4,8 @@ import LCARS from './LCARS';
 import LCARSText, { LCARSTextProps } from './LCARSText';
 
 interface LCARSCalendarProps {
-    width: number;
-    height: number;
+    width: number;  // width and height must be proportional to the width and height
+    height: number; // of the parent container. Defaults: 1920x1200
     x: number;
     y: number;
     scale: string;
@@ -15,11 +15,16 @@ interface LCARSCalendarProps {
 }
 
 export interface LCARSCalendarState {
+    width: number;
+    height: number;
+    visibleWidth: number;
+    visibleHeight: number;
+    headerOffset: number;
     now: Date;
     today: number;
     displayMonth: number;
     displayYear: number;
-    displayDays: LCARSText[];
+    displayDays: DisplayTextProps[];
     displayMonthString: string;
     displayYearString: string;
     currentMonth: number;
@@ -28,6 +33,8 @@ export interface LCARSCalendarState {
 }
 
 const MAX_DAYS_IN_MONTH_DISPLAY = 42; /** 6 lines of 7 days */
+const FONT_SIZE = LCARS.getLCARSFontSize(LCARS.EF_NORMAL);
+const DAY_SPACING = 15;
 
 /**
  * LCARS Base Clock component, for the display and control of time.
@@ -35,9 +42,11 @@ const MAX_DAYS_IN_MONTH_DISPLAY = 42; /** 6 lines of 7 days */
 class LCARSCalendar<P extends LCARSCalendarProps> extends Component<P> {
 
     public static defaultProps = {
-        fontSize: 1,
-        daySpacing: 10,
+        fontSize: FONT_SIZE,
+        daySpacing: DAY_SPACING,
         autoUpdate: false,
+        width: 1920/4,
+        height: 1200/4
     };
 
     state: LCARSCalendarState;
@@ -45,45 +54,103 @@ class LCARSCalendar<P extends LCARSCalendarProps> extends Component<P> {
     constructor(props: P) {
         super(props);
 
+        let now = new Date();
+        let currentMonth = now.getMonth();
+        let displayMonthString = LCARS.MONTHS[currentMonth+1];
+
+        let currentYear = now.getFullYear();
+        let displayYearString = currentYear.toString();
+
+        let today = now.getDate();
+
         this.state = {
-            now: new Date(),
-            today: 0,
-            displayMonth: 0,
-            displayYear: 0,
+            width: this.props.width,
+            height: this.props.height,
+            //visibleWidth: 6 * FONT_SIZE + 6 * DAY_SPACING,
+            visibleWidth: 6 * FONT_SIZE * DAY_SPACING / 7,
+            visibleHeight: (FONT_SIZE * 2) + (MAX_DAYS_IN_MONTH_DISPLAY/7 * FONT_SIZE * 2),
+            headerOffset: this.props.fontSize * 2,
+            now: now,
+            today: today,
+            displayMonth: currentMonth,
+            displayYear: currentYear,
             displayDays: [],
-            displayMonthString: "",
-            displayYearString: "",
-            currentMonth: 0,
-            currentYear: 0,
+            displayMonthString: displayMonthString,
+            displayYearString: displayYearString,
+            currentMonth: currentMonth,
+            currentYear: currentYear,
             intervalVariable: 0,
         };
 
+        //console.log(this.state.width);
+        //console.log(this.state.height);
     }
 
     componentDidMount() {
-        console.log(this.state);
         this.setToday();
         this.updateCalendar();
-        console.log(this.state);
 
         this.startAutoUpdate();
     }
 
+    componentWillUnmount() {
+        this.stopAutoUpdate();
+    }
+
     render() {
-        return(
-            <svg x={this.props.x} y={this.props.y} width={this.props.scale} height={this.props.scale} viewBox={"0 0 " + this.props.width + " " + this.props.height}>
-                <LCARSText
-                    id="monthString"
-                    label={this.state.displayMonthString}
-                    properties={LCARS.ES_LABEL_W | LCARS.EC_L_BLUE}
-                    color={LCARS.EC_L_BLUE}
-                    fontSizeOverride={this.props.fontSize}
-                    x={0} y={0}
-                    static={false}
-                />
-                {this.props.children}
-            </svg>
-        );
+
+        const { displayDays } = this.state;
+
+        let startDay = this.dayOfWeek(this.state.displayMonth, 1, this.state.displayYear);
+        
+        /*
+         * Get the number of the days in the display month.
+         */
+        let daysInMonth = this.getDaysInMonth(this.state.displayMonth, this.state.displayYear);
+
+        
+        let yearX = (this.state.visibleWidth-LCARS.getTextWidth3(this.state.displayYearString, this.props.fontSize));
+        
+        if(displayDays.length > 0) {
+            return(
+                <svg x={this.props.x} y={this.props.y} width={this.props.scale} height={this.props.scale} viewBox={"0 0 " + this.props.width + " " + this.props.height}>
+
+                     <LCARSText
+                        id="monthString"
+                        label={this.state.displayMonthString}
+                        properties={LCARS.ES_LABEL_W | LCARS.EC_L_BLUE}
+                        color={LCARS.EC_L_BLUE}
+                        x={0} y={0}
+                        static={false}
+                    />
+                    <LCARSText
+                        id="yearString"
+                        label={this.state.displayYearString}
+                        properties={LCARS.ES_LABEL_W | LCARS.EC_L_BLUE}
+                        color={LCARS.EC_L_BLUE}
+                        x={yearX + LCARS.getTextWidth3("30", FONT_SIZE)} y={0}
+                        static={false}
+                    />
+                    {
+                        displayDays.map(displayDay =>
+                            <LCARSText
+                                key={displayDay.id}
+                                id={displayDay.id}
+                                label={displayDay.label}
+                                properties={displayDay.properties }
+                                color={displayDay.color}
+                                x={displayDay.x}
+                                y={displayDay.y}
+                            />
+                        )
+                    }
+
+                    {this.props.children}
+                </svg>
+            );
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -111,73 +178,49 @@ class LCARSCalendar<P extends LCARSCalendarProps> extends Component<P> {
          */
         var daysInMonth = this.getDaysInMonth(this.state.displayMonth, this.state.displayYear);
         
-        let displayDays: LCARSText[] = [];
+        let displayDays: DisplayTextProps[] = [];
 
-        /*
-         * 
-         */
-        
         /*
          * Clear the calendar of text, and fill it with the appropriate days
          * for the display month and the display year.
          */
         for(var i=0; i<MAX_DAYS_IN_MONTH_DISPLAY; i++) {
-            let props = {
-                id: "day_1",
-                color: LCARS.EC_ORANGE,
-                properties: LCARS.ES_LABEL_C,
-                static: true,
-                enabled: true,
-                label: "",
-                x: 0,
-                y: 0,
-                width: 0,
-                height: LCARS.LCARS_BTN_HEIGHT,
-                scale: "1.0",
-                handleClick: null,
-                auxLabel: "",
-                auxLabelProperties: 0,
-                blinking: false,
-                blinkingColor: 0,
-                blinkingDuration: LCARS.BLINK_DURATION_WARNING,
-                icon: "",
-                iconLocation: LCARS.ES_LABEL_C,
-                iconScale: "1.5",
-                visible: "visible",
-                fontSizeOverride: 1.0
-            };
+
+            let x = i%7 * FONT_SIZE * DAY_SPACING / 7;
+            let y = (parseInt((i/7).toString())+1) * FONT_SIZE * 1.5;
+            let label = (i+1).toString();
+            let properties = LCARS.ES_LABEL_W;
+            let color = LCARS.EC_BLUE;
 
             if(i < startDay || i > startDay+daysInMonth-1) {
-                props.label = "";
+                label = "";
             }
             else {
                 var day = i-startDay+1;
-                props.label = day.toString();
+                label = day.toString();
                 
+                x += LCARS.getTextWidth3("30", FONT_SIZE) - LCARS.getTextWidth3(label, FONT_SIZE);
+
                 if(this.isWeekday(day)) {
-                    //this.displayDays[i].textElement.setAttribute("fill", LCARS.getColor(LCARS.EC_L_BLUE));
-                    props.color = LCARS.EC_L_BLUE;
-                    props.properties = props.properties | LCARS.EC_L_BLUE;
+                    color = LCARS.EC_L_BLUE;
+                    properties = properties | LCARS.EC_L_BLUE;
                 }
                 if(this.isSunday(day)) {
-                    //this.displayDays[i].textElement.setAttribute("fill", LCARS.getColor(LCARS.EC_ORANGE));
-                    props.color = LCARS.EC_ORANGE;
-                    props.properties = props.properties | LCARS.EC_ORANGE;
+                    color = LCARS.EC_ORANGE;
+                    properties = properties | LCARS.EC_ORANGE;
                 }
                 if(this.isSaturday(day)) {
-                    //this.displayDays[i].textElement.setAttribute("fill", LCARS.getColor(LCARS.EC_BLUE));
-                    props.color = LCARS.EC_BLUE;
-                    props.properties = props.properties | LCARS.EC_BLUE;
+                    color = LCARS.EC_BLUE;
+                    properties = properties | LCARS.EC_BLUE;
                 }
                 
                 if(this.isToday(day)) {
-                    //this.displayDays[i].textElement.setAttribute("fill", LCARS.getColor(LCARS.EC_YELLOW));
-                    props.color = LCARS.EC_YELLOW;
-                    props.properties = props.properties | LCARS.EC_YELLOW;
+                    color = LCARS.EC_YELLOW;
+                    properties = properties | LCARS.EC_YELLOW;
                 }
             }
 
-            displayDays.push(new LCARSText(props));
+            displayDays.push(new DisplayTextProps(label, x, y, properties, color));
         }
 
         /*
@@ -191,8 +234,6 @@ class LCARSCalendar<P extends LCARSCalendarProps> extends Component<P> {
             displayYearString: displayYearString,
             displayDays: displayDays
         });
-        
-        console.log(this.state);
     }
         
         
@@ -202,8 +243,6 @@ class LCARSCalendar<P extends LCARSCalendarProps> extends Component<P> {
      * and the display is updated.
      */
     update() {
-        console.log("in update()...");
-        console.log(this.state);
         /* Get the current date. */
         var rightNow = new Date();
         
@@ -267,17 +306,10 @@ class LCARSCalendar<P extends LCARSCalendarProps> extends Component<P> {
      * the calendar array of days resets the text of the entire array.
      */
     clearCalendarText() {
-        const emptyProps: LCARSTextProps = {
-            id: "empty",
-            label: "",
-            static: true, enabled: false, visible: "hidden",
-            x: 0, y: 0, width: 0, height: 0, scale: '100%', color: 0, properties: 0, handleClick: null,
-            auxLabel: "", auxLabelProperties: 0, blinking: false, blinkingColor: 0, blinkingDuration: "",
-            icon: "", iconLocation: 0, iconScale: "100%", fontSizeOverride: 0 
-        };
-        let displayDays: LCARSText[] = this.state.displayDays;
+        
+        let displayDays: DisplayTextProps[] = this.state.displayDays;
         for(var i=0; i<MAX_DAYS_IN_MONTH_DISPLAY; i++) {
-            displayDays[i] = new LCARSText(emptyProps);
+            displayDays[i] = new DisplayTextProps("", 0, 0, LCARS.ES_NONE);
         }
 
         this.setState({
@@ -506,7 +538,7 @@ class LCARSCalendar<P extends LCARSCalendarProps> extends Component<P> {
      * @param day an integer value for the day
      * @return <code>true</code> if today, <code>false</code> if not
      */
-    isToday(day: number) {
+    isToday(day: number) {        
         if(this.state.displayYear == this.state.currentYear && this.state.displayMonth == this.state.currentMonth && day == this.state.today) {
             return true;
         }
@@ -542,3 +574,22 @@ class LCARSCalendar<P extends LCARSCalendarProps> extends Component<P> {
 }
 
 export default LCARSCalendar;
+
+class DisplayTextProps {
+    id: string;
+    label: string;
+    x: number;
+    y: number;
+    properties: number;
+    color: number | undefined;
+
+    constructor(label: string, x: number, y: number, properties: number, color?: number) {
+        this.id = "day_" + label;
+        this.label = label;
+        this.x = x;
+        this.y = y;
+        this.properties = properties;
+        this.color = color;
+    }
+
+}
